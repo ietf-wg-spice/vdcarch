@@ -251,7 +251,7 @@ adapt to diverse regulatory and operational environments.
 # Use Cases
 
 # Terminology
-Credential manager:
+Credential Manager:
 : An application, hardware device, or service which securely stores, organizes,
 manages, and enables presentation of credentials. Digital wallets, password
 managers, and passkeys managers are examples of credential managers.
@@ -265,30 +265,31 @@ Credential Subject:
 : The entity the credential pertains to, such as an individual, organization,
 or object.
 
-Presentation
+Issuance:
+: TBD
 
-Presentation Proof:
-: Proof to a verifier that a particular issuer has provided a verifiable digital
-credential to the presentation mediator. A presentation proof is a derived
-artifact that proves claims from a credential in a specific interaction with a
-verifier.
+Issuance Protocol:
+: TBD
 
-Presentation Protocol
+Issuer:
+: The entity that cryptographically signs a verifiable digital credential,
+thereby asserting its claims about a subject.
 
-Issuance
+Issuer service:
+: The underlying platform or infrastructure service which enables an Issuer to
+issue a verifiable digital credential.
 
-Issuance Protocol
+Local Device:
+: TBD
 
-Mediation API
+Mediation API:
+: TBD
 
-Local Device
+Nearby Device:
+: TBD
 
-Nearby Device
-
-Presenter:
-: The actor that delivers a presentation to a verifier. While often the
-credential subject, the presenter could also be a party authorized to present
-claims about the subject.
+Presentation:
+: TBD
 
 Presentation Mediator:
 : a software user agent that manages the presentation of credentials to the
@@ -296,6 +297,19 @@ verifier on behalf of the presenter. It is responsible for initiating and
 mediating credential presentations, ensuring compliance with presenter
 preferences and system policies. The presenter controls a presentation mediator.
 
+Presentation Proof:
+: Proof to a verifier that a particular issuer has provided a verifiable digital
+credential to the presentation mediator. A presentation proof is a derived
+artifact that proves claims from a credential in a specific interaction with a
+verifier.
+
+Presentation Protocol:
+: TBD
+
+Presenter:
+: The actor that delivers a presentation to a verifier. While often the
+credential subject, the presenter could also be a party authorized to present
+claims about the subject.
 
 Verifiable digital credential (VDC):
 : A cryptographically verifiable, tamper-evident assertion of claims about a
@@ -310,14 +324,6 @@ relying party.
 Verifier service:
 : The underlying platform or infrastructure service which enables a Verifier to
 validate a verifiable digital credential.
-
-Issuer:
-: The entity that cryptographically signs a verifiable digital credential,
-thereby asserting its claims about a subject.
-
-Issuer service:
-: The underlying platform or infrastructure service which enables an Issuer to
-issue a verifiable digital credential.
 
 # Architecture
 
@@ -371,6 +377,8 @@ authentication process.
 
 ## Behavioral Constraints
 
+TBD - more constraints
+
 ### Presenter Control
 
 The mediator SHOULD provide the presenter with the means to control which data
@@ -421,6 +429,8 @@ to verify the authenticity of proofs based on that credential fail.
 
 ## Relationships
 
+TBD - more (and better?) relationships
+
 ### Credentials and Presentation Proofs
 
 A verifiable digital credential is an object representing a set of claims
@@ -453,6 +463,8 @@ architecture to support complex use cases, such as power-of-attorney scenarios
 or enterprise credentialing systems.
 
 # Trust Model
+
+TBD
 
 # General Flows
 
@@ -545,6 +557,9 @@ binding (aka holder binding) of the proof and - if the implementation supports
 revocation - the current validity of the underlying credential(s). If successful
 the data in the proof is made available to the application.
 
+## Additional Flows
+
+TBD
 
 # Security and Privacy Considerations
 ## Security
