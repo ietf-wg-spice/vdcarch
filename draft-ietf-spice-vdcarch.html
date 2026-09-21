@@ -16,23 +16,23 @@ mediator as the active component responsible for managing, presenting, and
 selectively disclosing credentials while preserving a set of security and
 privacy promises that will also be defined. 
     " name="description">
-<meta content="xml2rfc 3.34.0" name="generator">
+<meta content="xml2rfc 3.34.1" name="generator">
 <meta content="direct presentation credentials" name="keyword">
 <meta content="draft-ietf-spice-vdcarch-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.34.0
+  xml2rfc 3.34.1
     Python 3.14.7
-    ConfigArgParse 1.7.5
+    ConfigArgParse 1.7.7
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.11.7
+    platformdirs 4.11.10
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.8.3
+    wcwidth 0.8.4
 -->
 <link href="draft-ietf-spice-vdcarch.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1055,7 +1055,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Johansson, et al.</td>
-<td class="center">Expires 21 March 2027</td>
+<td class="center">Expires 25 March 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-spice-vdcarch-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-09-17" class="published">17 September 2026</time>
+<time datetime="2026-09-21" class="published">21 September 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-03-21">21 March 2027</time></dd>
+<dd class="expires"><time datetime="2027-03-25">25 March 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1131,7 +1131,7 @@ privacy promises that will also be defined.<a href="#section-abstract-1" class="
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1167,112 +1167,105 @@ privacy promises that will also be defined.<a href="#section-abstract-1" class="
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-terminology-and-roles" class="internal xref">Terminology and Roles</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-naming-the-elephant-in-the-" class="internal xref">Naming the elephant in the room</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-terminology-used-in-this-sp" class="internal xref">Terminology used in this specification</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-use-cases" class="internal xref">Use Cases</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-actors-and-entities" class="internal xref">Actors and Entities</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-subject-and-presenter" class="internal xref">Subject and Presenter</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-presentation-mediator-crede" class="internal xref">Presentation Mediator (Credential Presentation User Agent)</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-credential-recipient-mediat" class="internal xref">Credential Recipient Mediator (Credential Recipient User Agent)</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
-                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-credential-store" class="internal xref">Credential Store</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
-                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-credentials-and-presentatio" class="internal xref">Credentials and Presentation Proofs</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.6">
-                <p id="section-toc.1-1.4.2.6.1"><a href="#section-4.6" class="auto internal xref">4.6</a>.  <a href="#name-issuer-and-verifier" class="internal xref">Issuer and Verifier</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-presentation-flows" class="internal xref">Presentation Flows</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-architecture" class="internal xref">Architecture</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-direct-presentation-flow" class="internal xref">Direct Presentation Flow</a></p>
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-actor-descriptions" class="internal xref">Actor Descriptions</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
+                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-presentation-mediator-crede" class="internal xref">Presentation Mediator (Credential Presentation User Agent)</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.2">
+                    <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="auto internal xref">5.1.2</a>.  <a href="#name-credential-store" class="internal xref">Credential Store</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.3">
+                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="auto internal xref">5.1.3</a>.  <a href="#name-issuer-and-verifier" class="internal xref">Issuer and Verifier</a></p>
+</li>
+                </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-delegated-or-assisted-prese" class="internal xref">Delegated or Assisted Presentation Flow</a></p>
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-behavioral-constraints" class="internal xref">Behavioral Constraints</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.1">
+                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-presenter-control" class="internal xref">Presenter Control</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.2">
+                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-issuer-binding" class="internal xref">Issuer Binding</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
+                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-mediator-binding" class="internal xref">Mediator Binding</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.4">
+                    <p id="section-toc.1-1.5.2.2.2.4.1"><a href="#section-5.2.4" class="auto internal xref">5.2.4</a>.  <a href="#name-selective-disclosure" class="internal xref">Selective Disclosure</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.5">
+                    <p id="section-toc.1-1.5.2.2.2.5.1"><a href="#section-5.2.5" class="auto internal xref">5.2.5</a>.  <a href="#name-non-linkability-and-data-mi" class="internal xref">Non-linkability and data minimization</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.6">
+                    <p id="section-toc.1-1.5.2.2.2.6.1"><a href="#section-5.2.6" class="auto internal xref">5.2.6</a>.  <a href="#name-revocation" class="internal xref">Revocation</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-relationships" class="internal xref">Relationships</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.1">
+                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="auto internal xref">5.3.1</a>.  <a href="#name-credentials-and-presentatio" class="internal xref">Credentials and Presentation Proofs</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.2">
+                    <p id="section-toc.1-1.5.2.3.2.2.1"><a href="#section-5.3.2" class="auto internal xref">5.3.2</a>.  <a href="#name-subject-and-presenter" class="internal xref">Subject and Presenter</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-normative-requirements" class="internal xref">Normative Requirements</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-subject-control" class="internal xref">Subject control</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-selective-disclosure" class="internal xref">Selective Disclosure</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-issuer-binding" class="internal xref">Issuer Binding</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4">
-                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-mediator-binding" class="internal xref">Mediator Binding</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5">
-                <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-non-linkability-and-data-mi" class="internal xref">Non-linkability and data minimization</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.6">
-                <p id="section-toc.1-1.6.2.6.1"><a href="#section-6.6" class="auto internal xref">6.6</a>.  <a href="#name-revocation" class="internal xref">Revocation</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-trust-model" class="internal xref">Trust Model</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-profiles" class="internal xref">Profiles</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-general-flows" class="internal xref">General Flows</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-openid-and-sd-jwt" class="internal xref">OpenID and SD-JWT</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-the-basic-profile-plus-w3c-" class="internal xref">The Basic Profile plus W3C Verifiable Credentials</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3">
-                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="auto internal xref">7.3</a>.  <a href="#name-anoncreds" class="internal xref">Anoncreds</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.4">
-                <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="auto internal xref">7.4</a>.  <a href="#name-the-eu-digital-identity-wal" class="internal xref">The EU Digital Identity Wallet</a></p>
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-direct-presentation-flow" class="internal xref">Direct Presentation Flow</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-and-privacy-consid" class="internal xref">Security and Privacy Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-privacy" class="internal xref">Privacy</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-appendix" class="internal xref">Appendix</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
-                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2">
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
-</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1312,237 +1305,319 @@ verifiers, and issuers, creating a scalable and interoperable system that can
 adapt to diverse regulatory and operational environments.<a href="#section-2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="terminology-and-roles">
+<div id="use-cases">
 <section id="section-3">
-      <h2 id="name-terminology-and-roles">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-terminology-and-roles" class="section-name selfRef">Terminology and Roles</a>
+      <h2 id="name-use-cases">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-use-cases" class="section-name selfRef">Use Cases</a>
+    </h2>
+</section>
+</div>
+<div id="terminology">
+<section id="section-4">
+      <h2 id="name-terminology">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
       </h2>
-<span class="break"></span><dl class="dlParallel" id="section-3-1">
-        <dt id="section-3-1.1">Credential manager:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-1.2">
-          <p id="section-3-1.2.1">An application, hardware device, or service which securely stores, organizes,
+<span class="break"></span><dl class="dlParallel" id="section-4-1">
+        <dt id="section-4-1.1">Credential manager:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.2">
+          <p id="section-4-1.2.1">An application, hardware device, or service which securely stores, organizes,
 manages, and enables presentation of credentials. Digital wallets, password
-managers, and passkeys managers are examples of credential managers.<a href="#section-3-1.2.1" class="pilcrow">¶</a></p>
+managers, and passkeys managers are examples of credential managers.<a href="#section-4-1.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-1.3">Issuer:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-1.4">
-          <p id="section-3-1.4.1">The entity that cryptographically signs a verifiable digital credential,
-thereby asserting its claims about a subject.<a href="#section-3-1.4.1" class="pilcrow">¶</a></p>
+<dt id="section-4-1.3">Credential Store:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.4">
+          <p id="section-4-1.4.1">A passive repository for securely storing credentials. It supports the
+presentation mediator by providing access to stored credentials without
+performing active operations.<a href="#section-4-1.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-1.5">Issuer service:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-1.6">
-          <p id="section-3-1.6.1">The underlying platform or infrastructure service which enables an Issuer to
-issue a verifiable digital credential.<a href="#section-3-1.6.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-1.7">Verifiable digital credential (VDC):</dt>
-        <dd style="margin-left: 1.5em" id="section-3-1.8">
-          <p id="section-3-1.8.1">A cryptographically verifiable, tamper-evident assertion of claims about a
-subject, signed by an Issuer. VDCs are stored in a Credential Manager.<a href="#section-3-1.8.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-1.9">Verifier:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-1.10">
-          <p id="section-3-1.10.1">The entity that cryptographically validates the authenticity and integrity of
-a verifiable digital credential. A verifier is typically, but not always, the
-relying party.<a href="#section-3-1.10.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-1.11">Verifier service:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-1.12">
-          <p id="section-3-1.12.1">The underlying platform or infrastructure service which enables a Verifier to
-validate a verifiable digital credential.<a href="#section-3-1.12.1" class="pilcrow">¶</a></p>
+<dt id="section-4-1.5">Credential Subject:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.6">
+          <p id="section-4-1.6.1">The entity the credential pertains to, such as an individual, organization,
+or object.<a href="#section-4-1.6.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
-<div id="naming-the-elephant-in-the-room">
-<section id="section-3.1">
-        <h3 id="name-naming-the-elephant-in-the-">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-naming-the-elephant-in-the-" class="section-name selfRef">Naming the elephant in the room</a>
-        </h3>
-<p id="section-3.1-1">The term "digital wallet" or "digital identity wallet" is often used to denote a
-container for digital objects representing information about a subject. Such
-objects are often called "digital credentials". The use of the word "wallet" is
-both historic, stemming from the origin of some types of wallet in the "crypto"
-or digital asset community, as well as meant to make the user think of a
-physical wallet where digital credentials correspond to things like credit
-cards, currency, loyalty cards, identity cards etc.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">Arguably the use of the term wallet is often confusing since it may lead to
-assumptions about the fungibility of identity or that credentials are exchanged
-as part of a monetary transaction. In this specification we will use the term
-"presentation mediator" when traditionally the term "identity wallet" or
-"wallet" has been used.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-4-2">Presentation<a href="#section-4-2" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4-3">
+        <dt id="section-4-3.1">Presentation Proof:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-3.2">
+          <p id="section-4-3.2.1">Proof to a verifier that a particular issuer has provided a verifiable digital
+credential to the presentation mediator. A presentation proof is a derived
+artifact that proves claims from a credential in a specific interaction with a
+verifier.<a href="#section-4-3.2.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+<p id="section-4-4">Presentation Protocol<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">Issuance<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">Issuance Protocol<a href="#section-4-6" class="pilcrow">¶</a></p>
+<p id="section-4-7">Mediation API<a href="#section-4-7" class="pilcrow">¶</a></p>
+<p id="section-4-8">Local Device<a href="#section-4-8" class="pilcrow">¶</a></p>
+<p id="section-4-9">Nearby Device<a href="#section-4-9" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4-10">
+        <dt id="section-4-10.1">Presenter:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-10.2">
+          <p id="section-4-10.2.1">The actor that delivers a presentation to a verifier. While often the
+credential subject, the presenter could also be a party authorized to present
+claims about the subject.<a href="#section-4-10.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-10.3">Presentation Mediator:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-10.4">
+          <p id="section-4-10.4.1">a software user agent that manages the presentation of credentials to the
+verifier on behalf of the presenter. It is responsible for initiating and
+mediating credential presentations, ensuring compliance with presenter
+preferences and system policies. The presenter controls a presentation mediator.<a href="#section-4-10.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-10.5">Verifiable digital credential (VDC):</dt>
+        <dd style="margin-left: 1.5em" id="section-4-10.6">
+          <p id="section-4-10.6.1">A cryptographically verifiable, tamper-evident assertion of claims about a
+subject, signed by an Issuer. VDCs are issued to a presenter, stored in a
+credential manager, and presented to a verifier.<a href="#section-4-10.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-10.7">Verifier:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-10.8">
+          <p id="section-4-10.8.1">The entity that cryptographically validates the authenticity and integrity of
+a verifiable digital credential. A verifier is typically, but not always, the
+relying party.<a href="#section-4-10.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-10.9">Verifier service:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-10.10">
+          <p id="section-4-10.10.1">The underlying platform or infrastructure service which enables a Verifier to
+validate a verifiable digital credential.<a href="#section-4-10.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-10.11">Issuer:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-10.12">
+          <p id="section-4-10.12.1">The entity that cryptographically signs a verifiable digital credential,
+thereby asserting its claims about a subject.<a href="#section-4-10.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-10.13">Issuer service:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-10.14">
+          <p id="section-4-10.14.1">The underlying platform or infrastructure service which enables an Issuer to
+issue a verifiable digital credential.<a href="#section-4-10.14.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
 </section>
 </div>
-<div id="terminology-used-in-this-specification">
-<section id="section-3.2">
-        <h3 id="name-terminology-used-in-this-sp">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-terminology-used-in-this-sp" class="section-name selfRef">Terminology used in this specification</a>
-        </h3>
-<p id="section-3.2-1">To anchor this architecture, we define key terms:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.2-2.1">
-            <p id="section-3.2-2.1.1">A presentation mediator is an active software component that manages the
-presentation of credentials to the verifier on behalf of the credential subject.<a href="#section-3.2-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.2-2.2">
-            <p id="section-3.2-2.2.1">A credential store is a passive repository for securely storing credentials.
-It supports the presentation mediator by providing access to stored credentials
-without performing active operations.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.2-2.3">
-            <p id="section-3.2-2.3.1">The credential subject is the entity the credential pertains to, such as an
-individual or organization.<a href="#section-3.2-2.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.2-2.4">
-            <p id="section-3.2-2.4.1">A presenter is the actor that delivers a credential to a verifier. While often
-the credential subject, the presenter could also be an authorized agent or
-software acting on their behalf.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.2-2.5">
-            <p id="section-3.2-2.5.1">A credential is a signed, structured document containing claims about a
-subject, issued by a trusted entity.<a href="#section-3.2-2.5.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.2-2.6">
-            <p id="section-3.2-2.6.1">An attestation is a statement about a credential, often used to validate or
-certify its properties, such as its integrity or scope.<a href="#section-3.2-2.6.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.2-2.7">
-            <p id="section-3.2-2.7.1">A presentation proof is a derived artifact that proves claims from a
-credential in a specific interaction with a verifier.<a href="#section-3.2-2.7.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
-</section>
-</div>
-</section>
-</div>
-<div id="actors-and-entities">
-<section id="section-4">
-      <h2 id="name-actors-and-entities">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-actors-and-entities" class="section-name selfRef">Actors and Entities</a>
+<div id="architecture">
+<section id="section-5">
+      <h2 id="name-architecture">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-architecture" class="section-name selfRef">Architecture</a>
       </h2>
-<div id="subject-and-presenter">
-<section id="section-4.1">
-        <h3 id="name-subject-and-presenter">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-subject-and-presenter" class="section-name selfRef">Subject and Presenter</a>
+<div id="actor-descriptions">
+<section id="section-5.1">
+        <h3 id="name-actor-descriptions">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-actor-descriptions" class="section-name selfRef">Actor Descriptions</a>
         </h3>
-<p id="section-4.1-1">The credential subject is the entity that the credential describes, such as an
-individual, an organization, or even an IoT device. However, the presenter—the
-actor delivering the credential to the verifier—may not always be the credential
-subject. For example, an administrator might present credentials on behalf of an
-organization, or a software agent might act as a presenter in automated
-workflows.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">This distinction between the credential subject and the presenter allows the
-architecture to support complex use cases, such as power-of-attorney scenarios
-or enterprise credentialing systems.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
-</section>
-</div>
 <div id="presentation-mediator-credential-presentation-user-agent">
-<section id="section-4.2">
-        <h3 id="name-presentation-mediator-crede">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-presentation-mediator-crede" class="section-name selfRef">Presentation Mediator (Credential Presentation User Agent)</a>
-        </h3>
-<p id="section-4.2-1">The presentation mediator (mediator for short) is the core active component of
-this architecture. It initiates and mediates credential presentations, ensuring
-compliance with credential subject preferences and system policies. For example,
-it might enforce selective disclosure, revealing only the subject's date of
-birth to a verifier while withholding other personal details. The presenter
-controls a presentation mediator.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">Often the presenter and subject is one and the same entity, eg a natural person
-controlling her own credentials. There are several situations where the
-presenter and subject are different entities however, for instance cases where
-presentation is delegated from a legal entity to an officer of a company or when
-care staff helps somebody with disabilities present personal credentials.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
-<p id="section-4.2-3">Unlike a credential store, the presentation mediator is responsible for
+<section id="section-5.1.1">
+          <h4 id="name-presentation-mediator-crede">
+<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-presentation-mediator-crede" class="section-name selfRef">Presentation Mediator (Credential Presentation User Agent)</a>
+          </h4>
+<p id="section-5.1.1-1">The presentation mediator is the core active component of this architecture. It
+is a user agent that initiates and mediates credential presentations, ensuring
+compliance with presenter preferences and system policies. For example, it might
+enforce selective disclosure, revealing only the subject's date of birth to a
+verifier while withholding other personal details.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-2">Often the presenter and subject are one and the same entity, e.g., a natural
+person controlling her own credentials. However, there are several situations
+where the presenter and subject are different entities. For instance, cases
+where presentation is delegated from a legal entity to an officer of a company
+or when care staff helps somebody with disabilities present personal credentials.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-3">Unlike a credential store, the presentation mediator is responsible for
 orchestrating interactions with verifiers, performing cryptographic operations,
-and generating presentation proofs.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
-<p id="section-4.2-4">The mediator is used by the subject to communicate with issuers and by the
-presenter to communicate with verifiers. The nature of the control the
-presenter/subject has over the mediator varies but minimally the subject must be
-able to initiate the receipt of credentials from an issuer and the presenter has
-to be able to generation and transmission of presentation proofs to a verifier.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
-<p id="section-4.2-5">The mediator acts on behalf of the subject when receiving credentials from an
-issuer and the issuance process typically involves authenticating the subject to
-the issuer. This can happen by the use of some delegated authentication exchange
-whereby the subject is represented by some other entity.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="credential-recipient-mediator-credential-recipient-user-agent">
-<section id="section-4.3">
-        <h3 id="name-credential-recipient-mediat">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-credential-recipient-mediat" class="section-name selfRef">Credential Recipient Mediator (Credential Recipient User Agent)</a>
-      </h3>
+and generating presentation proofs.<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-4">The mediator is used by the presenter to communicate with issuers verifiers. The
+nature of the control the presenter has over the mediator varies but minimally
+the presenter must be able to initiate the receipt of credentials from an issuer
+the generation and transmission of presentation proofs to a verifier.<a href="#section-5.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-5">The mediator acts on behalf of the presenter when receiving credentials from an
+issuer and the issuance process typically involves authenticating the presenter
+to the issuer.<a href="#section-5.1.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="credential-store">
-<section id="section-4.4">
-        <h3 id="name-credential-store">
-<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-credential-store" class="section-name selfRef">Credential Store</a>
-        </h3>
-<p id="section-4.4-1">The credential store is a passive repository where credentials are securely
+<section id="section-5.1.2">
+          <h4 id="name-credential-store">
+<a href="#section-5.1.2" class="section-number selfRef">5.1.2. </a><a href="#name-credential-store" class="section-name selfRef">Credential Store</a>
+          </h4>
+<p id="section-5.1.2-1">The credential store is a passive repository where credentials are securely
 stored. Its primary function is to provide the presentation mediator with access
 to the credentials it needs to generate presentation proofs. By separating
 storage from active mediation, the architecture enhances modularity and allows
-credential stores to be managed independently from presentation logic.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="credentials-and-presentation-proofs">
-<section id="section-4.5">
-        <h3 id="name-credentials-and-presentatio">
-<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-credentials-and-presentatio" class="section-name selfRef">Credentials and Presentation Proofs</a>
-        </h3>
-<p id="section-4.5-1">A digital identity credential (abbreviated as 'credential' in this document) is
-an object representing a set of claims associated with a subject. The credential
-<span class="bcp14">MAY</span> contain claims that uniquely identify a single subject. A digital identity
-credential is typically cryptographically bound both to the issuer and to the
-mediator where it is stored. A presentation proof (abbreviated as 'presentation'
-in this document) is a proof that a particular issuer has provided a particular
-set of credentials to the mediator. A presentation can be verified by at least
-one verifier. A presentation proof can be based on data present in a single
-credential or in multiple or even on the result of computations based on a set
-of credentials. A common example is a presentation proof that a subject is
-legally permitted to take driving lessons. This is a binary attribute which is
-the result of a computation involving knowledge of both the biological age of
-the subject as well as legal restrictions that apply to the jurisdiction where
-the verifier is operating.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+credential stores to be managed independently from presentation logic.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="issuer-and-verifier">
-<section id="section-4.6">
-        <h3 id="name-issuer-and-verifier">
-<a href="#section-4.6" class="section-number selfRef">4.6. </a><a href="#name-issuer-and-verifier" class="section-name selfRef">Issuer and Verifier</a>
-        </h3>
-<p id="section-4.6-1">An issuer is a set of protocol endpoints that allow a mediator to receive a
+<section id="section-5.1.3">
+          <h4 id="name-issuer-and-verifier">
+<a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-issuer-and-verifier" class="section-name selfRef">Issuer and Verifier</a>
+          </h4>
+<p id="section-5.1.3-1">An issuer is a set of protocol endpoints that allow a mediator to receive a
 credential. Credentials issued by the issuer are cryptographically bound to that
-issuer and to the receiving mediator.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
-<p id="section-4.6-2">A verifier is a set of protocol endpoints that allow a mediator to send a
+issuer and to the receiving mediator.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-2">A verifier is a set of protocol endpoints that allow a mediator to send a
 presentation to a verifier. A verifier is typically a component used to provide
 an application with data about the subject - for instance in the context of an
-authentication process.<a href="#section-4.6-2" class="pilcrow">¶</a></p>
+authentication process.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
-<div id="presentation-flows">
-<section id="section-5">
-      <h2 id="name-presentation-flows">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-presentation-flows" class="section-name selfRef">Presentation Flows</a>
+<div id="behavioral-constraints">
+<section id="section-5.2">
+        <h3 id="name-behavioral-constraints">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-behavioral-constraints" class="section-name selfRef">Behavioral Constraints</a>
+        </h3>
+<div id="presenter-control">
+<section id="section-5.2.1">
+          <h4 id="name-presenter-control">
+<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-presenter-control" class="section-name selfRef">Presenter Control</a>
+          </h4>
+<p id="section-5.2.1-1">The mediator <span class="bcp14">SHOULD</span> provide the presenter with the means to control which data
+from a credential is used in a presentation proof.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-2">The mediator <span class="bcp14">MUST NOT</span> be able to generate a presentation proof without the
+participation and approval of the credential presenter.<a href="#section-5.2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="issuer-binding">
+<section id="section-5.2.2">
+          <h4 id="name-issuer-binding">
+<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-issuer-binding" class="section-name selfRef">Issuer Binding</a>
+          </h4>
+<p id="section-5.2.2-1">A verifier <span class="bcp14">MUST</span> be able to verify the identity of the issuer of the credential
+from a presentation proof.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="mediator-binding">
+<section id="section-5.2.3">
+          <h4 id="name-mediator-binding">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-mediator-binding" class="section-name selfRef">Mediator Binding</a>
+          </h4>
+<p id="section-5.2.3-1">The verifier <span class="bcp14">MUST</span> be able to verify that the mediator sending the presentation
+proof is the same mediator that received the credential from which the
+presentation proof was derived.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-2">Note that this is often termed 'holder' binding because the mediator is a user
+agent for the presenter, and the presenter is sometimes called the holder.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="selective-disclosure">
+<section id="section-5.2.4">
+          <h4 id="name-selective-disclosure">
+<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-selective-disclosure" class="section-name selfRef">Selective Disclosure</a>
+          </h4>
+<p id="section-5.2.4-1">A conformant implementation <span class="bcp14">SHOULD</span> identify a format for representing digital
+credentials that make it possible for the presenter to select a subset of the
+claims in the credential for inclusion in a presentation proof.<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-2">Note: there are situations where selective disclosure isn't applicable, for
+instance when the presenter is legally compelled to present a credential.
+Exactly when selective disclosure is available as an option and what aspects of
+the credential are meaningful to select is an implementation issue and out of
+scope.<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="non-linkability-and-data-minimization">
+<section id="section-5.2.5">
+          <h4 id="name-non-linkability-and-data-mi">
+<a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-non-linkability-and-data-mi" class="section-name selfRef">Non-linkability and data minimization</a>
+          </h4>
+<p id="section-5.2.5-1">The verifier <span class="bcp14">MUST NOT</span> be able to infer information about data or subjects not
+present in the presentation. This includes any association between the mediator
+or subject and other issuers and verifiers not associated with the presentation.
+In particular, colluding verifiers <span class="bcp14">MUST NOT</span> be able to infer data not present in
+presentation proofs.<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="revocation">
+<section id="section-5.2.6">
+          <h4 id="name-revocation">
+<a href="#section-5.2.6" class="section-number selfRef">5.2.6. </a><a href="#name-revocation" class="section-name selfRef">Revocation</a>
+          </h4>
+<p id="section-5.2.6-1">A conformant implementation <span class="bcp14">SHOULD</span> provide a way for an issuer to revoke an
+issued digital credential in such a way that subsequent attempts by a verifier
+to verify the authenticity of proofs based on that credential fail.<a href="#section-5.2.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="relationships">
+<section id="section-5.3">
+        <h3 id="name-relationships">
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-relationships" class="section-name selfRef">Relationships</a>
+        </h3>
+<div id="credentials-and-presentation-proofs">
+<section id="section-5.3.1">
+          <h4 id="name-credentials-and-presentatio">
+<a href="#section-5.3.1" class="section-number selfRef">5.3.1. </a><a href="#name-credentials-and-presentatio" class="section-name selfRef">Credentials and Presentation Proofs</a>
+          </h4>
+<p id="section-5.3.1-1">A verifiable digital credential is an object representing a set of claims
+associated with a subject. The credential <span class="bcp14">MAY</span> contain claims that uniquely
+identify a single subject. A verifiable digital credential is typically
+cryptographically bound both to the issuer and to the mediator to which it is
+issued.<a href="#section-5.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.3.1-2">A presentation proof can be:
+1. Based on data present in a single credential.
+1. Based on data present in multiple credentials.
+1. Based on the result of computations made on a set of credentials.<a href="#section-5.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.3.1-3">One example is a presentation proof that a subject is legally permitted to take
+driving lessons. This is a binary attribute which is the result of a computation
+involving knowledge of both the biological age of the subject as well as legal
+restrictions that apply to the jurisdiction where the verifier is operating.<a href="#section-5.3.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="subject-and-presenter">
+<section id="section-5.3.2">
+          <h4 id="name-subject-and-presenter">
+<a href="#section-5.3.2" class="section-number selfRef">5.3.2. </a><a href="#name-subject-and-presenter" class="section-name selfRef">Subject and Presenter</a>
+          </h4>
+<p id="section-5.3.2-1">The credential subject is the entity that the credential describes, such as an
+individual, an organization, or even an IoT device. However, the presenter—the
+actor delivering the credential to the verifier—may not always be the credential
+subject. For example, an administrator might present credentials on behalf of an
+organization, or a customs broker might act as a presenter for a credential
+about goods in a shopment.<a href="#section-5.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.3.2-2">This distinction between the credential subject and the presenter allows the
+architecture to support complex use cases, such as power-of-attorney scenarios
+or enterprise credentialing systems.<a href="#section-5.3.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="trust-model">
+<section id="section-6">
+      <h2 id="name-trust-model">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-trust-model" class="section-name selfRef">Trust Model</a>
+    </h2>
+</section>
+</div>
+<div id="general-flows">
+<section id="section-7">
+      <h2 id="name-general-flows">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-general-flows" class="section-name selfRef">General Flows</a>
       </h2>
-<p id="section-5-1">Credential presentation flows describe how information from credentials are
+<p id="section-7-1">Credential presentation flows describe how information from credentials are
 transmitted from the mediator to the verifier. This architecture focuses on
 direct presentation flows, but it also accommodates variations such as delegated
-and assisted presentations.<a href="#section-5-1" class="pilcrow">¶</a></p>
+and assisted presentations.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <div id="direct-presentation-flow">
-<section id="section-5.1">
+<section id="section-7.1">
         <h3 id="name-direct-presentation-flow">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-direct-presentation-flow" class="section-name selfRef">Direct Presentation Flow</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-direct-presentation-flow" class="section-name selfRef">Direct Presentation Flow</a>
         </h3>
 <span id="name-basic-verifiable-cigital-cr"></span><div id="fig-basic-flow">
 <figure id="figure-1">
-          <div id="section-5.1-1.1">
-            <div class="alignLeft art-svg artwork" id="section-5.1-1.1.1">
+          <div id="section-7.1-1.1">
+            <div class="alignLeft art-svg artwork" id="section-7.1-1.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="1424" viewBox="0 0 1424 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 8,96 L 8,320" fill="none" stroke="black"></path>
                 <path d="M 88,32 L 88,64" fill="none" stroke="black"></path>
@@ -1667,30 +1742,30 @@ and assisted presentations.<a href="#section-5-1" class="pilcrow">¶</a></p>
                   <text x="1124" y="676">Verifier</text>
                   <text x="1296" y="676">Presenter</text>
                 </g>
-              </svg><a href="#section-5.1-1.1.1" class="pilcrow">¶</a>
+              </svg><a href="#section-7.1-1.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-basic-verifiable-cigital-cr" class="selfRef">Basic Verifiable Cigital Credential Flow</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-2">The mediator (acting on behalf of the subject) requests a credential from the
+<p id="section-7.1-2">The mediator (acting on behalf of the subject) requests a credential from the
 issuer. The way this flow is initiated is implementation dependent and in some
 cases (notably in <span>[<a href="#OIDC4VCI" class="cite xref">OIDC4VCI</a>]</span>) the flow often starts with the subject visiting
 a web page at the issuer where the subject is first authenticated and then
 presented with means to launch a credential issuance request using their
-mediator. These details are left out from the diagram above.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.1-3">The credential is generated by the issuer presumably based on information the
+mediator. These details are left out from the diagram above.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+<p id="section-7.1-3">The credential is generated by the issuer presumably based on information the
 issuer has about the credential subject but exactly how the credential is
 generated is implementation dependent and out of scope for this specification.
 The claims in the credential typically comes from some source with which the
 issuer has a trust relationship. The term "authentic source" is sometimes used
 when there is a need to distinguish the source of the claims in a credential
-from the source of the credential which by definition is the issuer.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.1-4">The mediator receives a credential from the issuer. The credential is bound both
+from the source of the credential which by definition is the issuer.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
+<p id="section-7.1-4">The mediator receives a credential from the issuer. The credential is bound both
 to the mediator and to the issuer in such a way that presentation proofs
-generated from the credential can be used to verify said bindings.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1-5">At some later point, the subject wants to use the credentials in their mediator
+generated from the credential can be used to verify said bindings.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+<p id="section-7.1-5">At some later point, the subject wants to use the credentials in their mediator
 to provide identity data to an application. The application has a verifier (a
 specific software component responsible for verifying presentation proofs)
 associated with it. The mediator - often after involving the user in some form
@@ -1700,263 +1775,36 @@ verifier. The precise way this flow is initiated is again implementation
 dependent and in some cases (notably <span>[<a href="#OIDC4VP" class="cite xref">OIDC4VP</a>]</span>) the flow starts with the
 subject visiting the application and hitting a "login" button which directs the
 users device to launch the mediator to complete the flow. These details are left
-out of the diagram above.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
-<p id="section-5.1-6">Upon receipt of the presentation the verifier verifies the issuer and mediator
+out of the diagram above.<a href="#section-7.1-5" class="pilcrow">¶</a></p>
+<p id="section-7.1-6">Upon receipt of the presentation the verifier verifies the issuer and mediator
 binding (aka holder binding) of the proof and - if the implementation supports
 revocation - the current validity of the underlying credential(s). If successful
-the data in the proof is made available to the application.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="delegated-or-assisted-presentation-flow">
-<section id="section-5.2">
-        <h3 id="name-delegated-or-assisted-prese">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-delegated-or-assisted-prese" class="section-name selfRef">Delegated or Assisted Presentation Flow</a>
-        </h3>
-<p id="section-5.2-1">Delegated flows occur when a third party, such as an enterprise or legal
-representative, is authorized to present credentials on behalf of the credential
-subject. The presentation mediator ensures that delegation is properly scoped
-and authorized, preventing misuse.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">Assisted flows involve granting limited rights to a third party to act on behalf
-of the credential subject. This may take the form of a secondary credential that
-grants access to the mediator for the purpose of generating and transmitting
-presentation proofs on behalf of the credential subject.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+the data in the proof is made available to the application.<a href="#section-7.1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
-<div id="normative-requirements">
-<section id="section-6">
-      <h2 id="name-normative-requirements">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-normative-requirements" class="section-name selfRef">Normative Requirements</a>
-      </h2>
-<div id="subject-control">
-<section id="section-6.1">
-        <h3 id="name-subject-control">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-subject-control" class="section-name selfRef">Subject control</a>
-        </h3>
-<p id="section-6.1-1">The mediator <span class="bcp14">SHOULD</span> provide the subject with the means to control which data
-from a credential is used in a presentation proof.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1-2">The mediator <span class="bcp14">MUST NOT</span> be able to generate a presentation proof without the
-participation and approval of the credential subject.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="selective-disclosure">
-<section id="section-6.2">
-        <h3 id="name-selective-disclosure">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-selective-disclosure" class="section-name selfRef">Selective Disclosure</a>
-        </h3>
-<p id="section-6.2-1">A conformant implementation <span class="bcp14">SHOULD</span> identify a format for representing digital
-credentials that make it possible for the subject to select a subset of the data
-present in the credential for inclusion in a presentation proof.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2-2">Note that there are situations where selective disclosure isn't applicable, for
-instance when the credential subject is legally compelled to present a
-credential. Exactly when selective disclosure is available as an option and what
-aspects of the credential is meaningful to select is an implementation issue and
-out of scope.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="issuer-binding">
-<section id="section-6.3">
-        <h3 id="name-issuer-binding">
-<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-issuer-binding" class="section-name selfRef">Issuer Binding</a>
-        </h3>
-<p id="section-6.3-1">A verifier <span class="bcp14">MUST</span> be able to verify the identity of the issuer of the credential
-from a presentation proof.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="mediator-binding">
-<section id="section-6.4">
-        <h3 id="name-mediator-binding">
-<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-mediator-binding" class="section-name selfRef">Mediator Binding</a>
-        </h3>
-<p id="section-6.4-1">The verifier <span class="bcp14">MUST</span> be able to verify that the mediator sending the presentation
-proof is the same mediator that received the credential from which the
-presentation proof was derived.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
-<p id="section-6.4-2">Note that this is often termed 'holder' binding because the mediator is
-sometimes called the holder.<a href="#section-6.4-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="non-linkability-and-data-minimization">
-<section id="section-6.5">
-        <h3 id="name-non-linkability-and-data-mi">
-<a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-non-linkability-and-data-mi" class="section-name selfRef">Non-linkability and data minimization</a>
-        </h3>
-<p id="section-6.5-1">The verifier <span class="bcp14">MUST NOT</span> be able to infer information about data or subjects not
-present in the presentation. This includes any association between the mediator
-or subject and other issuers and verifiers not associated with the presentation.
-In particular, colluding verifiers <span class="bcp14">MUST NOT</span> be able to infer data not present in
-presentation proofs.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="revocation">
-<section id="section-6.6">
-        <h3 id="name-revocation">
-<a href="#section-6.6" class="section-number selfRef">6.6. </a><a href="#name-revocation" class="section-name selfRef">Revocation</a>
-        </h3>
-<p id="section-6.6-1">A conformant implementation <span class="bcp14">SHOULD</span> provide a way for an issuer to revoke an
-issued digital credential in such a way that subsequent attempts by a verifier
-to verify the authenticity of proofs based on that credential fail.<a href="#section-6.6-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="profiles">
-<section id="section-7">
-      <h2 id="name-profiles">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-profiles" class="section-name selfRef">Profiles</a>
-      </h2>
-<p id="section-7-1">Several profiles of this reference architecture exist. We present some below.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<div id="openid-and-sd-jwt">
-<section id="section-7.1">
-        <h3 id="name-openid-and-sd-jwt">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-openid-and-sd-jwt" class="section-name selfRef">OpenID and SD-JWT</a>
-        </h3>
-<p id="section-7.1-1">A minimal profile of the direct presentation credential architecture is as
-follows:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-7.1-2">
-<li id="section-7.1-2.1">
-            <p id="section-7.1-2.1.1">Digital credentials are represented as SD-JWT objects <span>[<a href="#SDJWT" class="cite xref">SDJWT</a>]</span><a href="#section-7.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-7.1-2.2">
-            <p id="section-7.1-2.2.1">An issuer implements the OP side of <span>[<a href="#OIDC4VCI" class="cite xref">OIDC4VCI</a>]</span><a href="#section-7.1-2.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-7.1-2.3">
-            <p id="section-7.1-2.3.1">A verifier implements RP side of <span>[<a href="#OIDC4VP" class="cite xref">OIDC4VP</a>]</span><a href="#section-7.1-2.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-7.1-2.4">
-            <p id="section-7.1-2.4.1">A mediator implements the RP side of <span>[<a href="#OIDC4VCI" class="cite xref">OIDC4VCI</a>]</span> and the OP side of <span>[<a href="#OIDC4VP" class="cite xref">OIDC4VP</a>]</span><a href="#section-7.1-2.4.1" class="pilcrow">¶</a></p>
-</li>
-        </ol>
-<p id="section-7.1-3">A mediator conforming to this profile is essentially an openid connect
-store-and-prove proxy with a user interface allowing the subject control over
-selective disclosure.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
-<p id="section-7.1-4">This minimal profile fulfills several of the requirements in the previous
-section:<a href="#section-7.1-4" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7.1-5.1">
-            <p id="section-7.1-5.1.1">Selective disclosure is provided by the use of SD-JWT objects to represent
-credential and presentation objects.<a href="#section-7.1-5.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-7.1-5.2">
-            <p id="section-7.1-5.2.1">Issuer binding is provided by a combination of digital signatures on SD-JWTs
-and OpenID connect authentication between the mediator and issuer.<a href="#section-7.1-5.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-7.1-5.3">
-            <p id="section-7.1-5.3.1">Non-linkability is provided by not reusing SD-JWTs from the issuer for
-multiple presentations. The mediator <span class="bcp14">MAY</span> obtain multiple copies of the same
-SD-JWT credentials from the mediator at the same time. These can then be used to
-generate separate presentation objects, never reusing the same SD-JWT credential
-for separate verifiers.<a href="#section-7.1-5.3.1" class="pilcrow">¶</a></p>
-<p id="section-7.1-5.3.2">
-This profile does not provide any solution for revocation and it leaves the
-question of how OpenID connect entities (issuers, verifiers and mediator)
-trust each other. There are also real scalability issues involved in how the
-digital signature keys are managed but as a minimal profile it illustrates the
-components necessary to make a direct presentation architecture work.<a href="#section-7.1-5.3.2" class="pilcrow">¶</a></p>
-</li>
-        </ul>
-</section>
-</div>
-<div id="the-basic-profile-plus-w3c-verifiable-credentials">
-<section id="section-7.2">
-        <h3 id="name-the-basic-profile-plus-w3c-">
-<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-the-basic-profile-plus-w3c-" class="section-name selfRef">The Basic Profile plus W3C Verifiable Credentials</a>
-        </h3>
-<p id="section-7.2-1">An expansion of the minimal profile above:<a href="#section-7.2-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-7.2-2">
-<li id="section-7.2-2.1">
-            <p id="section-7.2-2.1.1">Digital credentials follow <span>[<a href="#VCDM2" class="cite xref">VCDM2</a>]</span><a href="#section-7.2-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-7.2-2.2">
-            <p id="section-7.2-2.2.1">These credentials are represented as SD-JWT objects <span>[<a href="#SDJWT" class="cite xref">SDJWT</a>]</span> following <span>[<a href="#VCJOSE" class="cite xref">VCJOSE</a>]</span><a href="#section-7.2-2.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-7.2-2.3">
-            <p id="section-7.2-2.3.1">The issuer uses a <span>[<a href="#CID" class="cite xref">CID</a>]</span> to identify themselves and the keys they used to sign the digital credential.<a href="#section-7.2-2.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-7.2-2.4">
-            <p id="section-7.2-2.4.1">The holder uses a <span>[<a href="#DID" class="cite xref">DID</a>]</span> such as <span>[<a href="#DIDKEY" class="cite xref">DIDKEY</a>]</span> to identify themselves.<a href="#section-7.2-2.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-7.2-2.5">
-            <p id="section-7.2-2.5.1">The issuer uses <span>[<a href="#TSL" class="cite xref">TSL</a>]</span> or <span>[<a href="#BSL" class="cite xref">BSL</a>]</span> to communicate credential status changes.<a href="#section-7.2-2.5.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-7.2-2.6">
-            <p id="section-7.2-2.6.1">An issuer implements the OP side of <span>[<a href="#OIDC4VCI" class="cite xref">OIDC4VCI</a>]</span><a href="#section-7.2-2.6.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-7.2-2.7">
-            <p id="section-7.2-2.7.1">A verifier implements RP side of <span>[<a href="#OIDC4VP" class="cite xref">OIDC4VP</a>]</span><a href="#section-7.2-2.7.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-7.2-2.8">
-            <p id="section-7.2-2.8.1">A mediator implements the RP side of <span>[<a href="#OIDC4VCI" class="cite xref">OIDC4VCI</a>]</span> and the OP side of <span>[<a href="#OIDC4VP" class="cite xref">OIDC4VP</a>]</span><a href="#section-7.2-2.8.1" class="pilcrow">¶</a></p>
-</li>
-        </ol>
-<p id="section-7.2-3">A mediator conforming to this profile is also essentially an OpenID Connect
-store-and-proove proxy with a user interface allowing the subject control over
-selective disclosure, with some additional benefits.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
-<p id="section-7.2-4">This profile fulfills several of the requirements in the previous section:<a href="#section-7.2-4" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-7.2-5.1">
-            <p id="section-7.2-5.1.1">Selective disclosure is provided by the use of SD-JWT objects to represent
-  credential and presentation objects.<a href="#section-7.2-5.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-7.2-5.2">
-            <p id="section-7.2-5.2.1">Issuer binding is provided by a combination of digital signatures on SD-JWTs
-  and OpenID connect authentication between the mediator and issuer.<a href="#section-7.2-5.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-7.2-5.3">
-            <p id="section-7.2-5.3.1">Mediator binding is provided by the use of a DID for the holder.<a href="#section-7.2-5.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-7.2-5.4">
-            <p id="section-7.2-5.4.1">Non-linkability is provided by not reusing SD-JWTs from the issuer for
-  multiple presentations. The mediator <span class="bcp14">MAY</span> obtain multiple copies of the same
-  SD-JWT credentials from the mediator at the same time. These can then be used
-  to generate separate presentation objects, never reusing the same SD-JWT
-  credential for separate verifiers.<a href="#section-7.2-5.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-7.2-5.5">
-            <p id="section-7.2-5.5.1">Revocation and other changes to credential status are communicated via
-  status credentials.<a href="#section-7.2-5.5.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-7.2-5.6">
-            <p id="section-7.2-5.6.1">It answers the question of trust by included a CID for issuer
-  identification, which also addresses some of the scalability issues involved
-  in managing the digital signature keys.<a href="#section-7.2-5.6.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
-</section>
-</div>
-<div id="anoncreds">
-<section id="section-7.3">
-        <h3 id="name-anoncreds">
-<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-anoncreds" class="section-name selfRef">Anoncreds</a>
-        </h3>
-<p id="section-7.3-1">TODO: write about hyperledger &amp; anoncreds<a href="#section-7.3-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="the-eu-digital-identity-wallet">
-<section id="section-7.4">
-        <h3 id="name-the-eu-digital-identity-wal">
-<a href="#section-7.4" class="section-number selfRef">7.4. </a><a href="#name-the-eu-digital-identity-wal" class="section-name selfRef">The EU Digital Identity Wallet</a>
-        </h3>
-<p id="section-7.4-1">The EU Digital Identity Wallet (EUDI Wallet) as defined by the architecture
-reference framework <span>[<a href="#ARF" class="cite xref">ARF</a>]</span> is an evolving profile for a direct presentation
-architecture that includes several aspects of the minimal profile above. Note
-that the EUDI Wallet specification is in flux and subject to significant change.<a href="#section-7.4-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="security-considerations">
+<div id="security-and-privacy-considerations">
 <section id="section-8">
-      <h2 id="name-security-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      <h2 id="name-security-and-privacy-consid">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-and-privacy-consid" class="section-name selfRef">Security and Privacy Considerations</a>
       </h2>
-<p id="section-8-1">One of the main security considerations of a direct presentation credential
+<p id="section-8-1">## Security<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">One of the main security considerations of a direct presentation credential
 architecture is how to establish the transactional trust between both the
 entities (mediators, issuers and verifiers) as well as the technical trust
 necessary for the cryptographic binding between the digital credentials and
 their associated presentation. Digital credentials are sometimes long-lived
 which also raises the issue of revocation with its associated security
-requirements.<a href="#section-8-1" class="pilcrow">¶</a></p>
+requirements.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<div id="privacy">
+<section id="section-8.1">
+        <h3 id="name-privacy">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-privacy" class="section-name selfRef">Privacy</a>
+        </h3>
+<p id="section-8.1-1">TBD<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1964,18 +1812,27 @@ requirements.<a href="#section-8-1" class="pilcrow">¶</a></p>
       <h2 id="name-iana-considerations">
 <a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-9-1">None so far<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-1">This document has no IANA considerations.<a href="#section-9-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="appendix">
+<section id="section-10">
+      <h2 id="name-appendix">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-appendix" class="section-name selfRef">Appendix</a>
+      </h2>
+<p id="section-10-1">## Examples of Components
+## Exploration of Standardization Gaps<a href="#section-10-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
-<section id="section-10">
+<section id="section-11">
       <h2 id="name-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-10.1">
+<section id="section-11.1">
         <h3 id="name-normative-references">
-<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="BSL">[BSL]</dt>
@@ -2022,9 +1879,9 @@ requirements.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-10.2">
+<section id="section-11.2">
         <h3 id="name-informative-references">
-<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="ARF">[ARF]</dt>
@@ -2085,6 +1942,9 @@ the thinking around trust and identity in general and this topic in particular.<
 </li>
         <li class="normal" id="appendix-A-2.7">
           <p id="appendix-A-2.7.1">Jeff Hodges<a href="#appendix-A-2.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.8">
+          <p id="appendix-A-2.8.1">Rohan Mahy<a href="#appendix-A-2.8.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
