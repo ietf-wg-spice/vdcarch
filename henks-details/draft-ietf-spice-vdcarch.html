@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>A Reference Architecture for Verifiable Digital Credentials in the Issuer, Holder, Verifier Model</title>
+<meta content="Leif Johansson" name="author">
+<meta content="Brent W. Zundel" name="author">
+<meta content="Tim Cappalli" name="author">
+<meta content="Henk Birkholz" name="author">
+<meta content="
+       This document defines a reference architecture for direct presentation flows of
+digital credentials. The architecture introduces the concept of a presentation
+mediator as the active component responsible for managing, presenting, and
+selectively disclosing credentials while preserving a set of security and
+privacy promises that will also be defined. 
+    " name="description">
+<meta content="xml2rfc 3.34.1" name="generator">
+<meta content="direct presentation credentials" name="keyword">
+<meta content="draft-ietf-spice-vdcarch-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.34.1
+    Python 3.14.7
+    ConfigArgParse 1.7.7
+    google-i18n-address 3.1.1
+    intervaltree 3.2.1
+    Jinja2 3.1.6
+    lxml 6.1.1
+    natsort 8.4.0
+    platformdirs 4.11.10
+    pycountry 24.6.1
+    PyYAML 6.0.3
+    requests 2.33.1
+    wcwidth 0.8.4
+-->
+<link href="draft-ietf-spice-vdcarch.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 680;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+  & li {
+    margin-top: 0.5em;
+  }
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+    }
+  }
+  &.olPercent > dt {
+    float: none;
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+}
+dl:not(.dlNewline) > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+  caption-side: bottom;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
+}
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
+}
+
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
+}
+
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
+}
+
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+/* Comments */
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+    & > ul { margin-bottom: 2em; }
+    & ul {
+      margin: 0 0 0 4px;
+      & :is(p, li) {
+        margin: 2px 0;
+      }
+    }
+  }
+  #toc a.toplink {
+    float: right;
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    &::before { /* css hamburger */
+      float: right;
+      position: relative;
+      width: 1em;
+      height: 1px;
+      left: -164px;
+      margin: 8px 0 0 0;
+      background: white none repeat scroll 0 0;
+      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+      content: "";
+    }
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active {
+    opacity: 1;
+    & nav { display: block; }
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:is(:link, :focus, :hover),
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin: 2px 0.5em 0;
+  }
+}
+
+/* TOC layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+  #toc a.toplink {
+    margin: 8px 0.5em 0;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">Architecture for Verifiable Digital Cred</td>
+<td class="right">September 2026</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Johansson, et al.</td>
+<td class="center">Expires 26 March 2027</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">Network Working Group</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-spice-vdcarch-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2026-09-22" class="published">22 September 2026</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2027-03-26">26 March 2027</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">L. Johansson</div>
+<div class="org">SIROS Foundation</div>
+</div>
+<div class="author">
+      <div class="author-name">B. Zundel</div>
+<div class="org">Yubico</div>
+</div>
+<div class="author">
+      <div class="author-name">T. Cappalli</div>
+<div class="org">Okta</div>
+</div>
+<div class="author">
+      <div class="author-name">H. Birkholz</div>
+<div class="org">Fraunhofer SIT</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">A Reference Architecture for Verifiable Digital Credentials in the Issuer, Holder, Verifier Model</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document defines a reference architecture for direct presentation flows of
+digital credentials. The architecture introduces the concept of a presentation
+mediator as the active component responsible for managing, presenting, and
+selectively disclosing credentials while preserving a set of security and
+privacy promises that will also be defined.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-discussion-venues">
+<a href="#name-discussion-venues" class="section-name selfRef">Discussion Venues</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">Source for this draft and an issue tracker can be found at
+    <span><a href="https://github.com/leifj/wallet-refarch">https://github.com/leifj/wallet-refarch</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 26 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2026 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-conventions" class="internal xref">Conventions</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-use-cases" class="internal xref">Use Cases</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-architecture" class="internal xref">Architecture</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-actor-descriptions" class="internal xref">Actor Descriptions</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
+                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-presentation-mediator-crede" class="internal xref">Presentation Mediator (Credential Presentation User Agent)</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.2">
+                    <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="auto internal xref">5.1.2</a>.  <a href="#name-credential-store" class="internal xref">Credential Store</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.3">
+                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="auto internal xref">5.1.3</a>.  <a href="#name-issuer-and-verifier" class="internal xref">Issuer and Verifier</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-behavioral-constraints" class="internal xref">Behavioral Constraints</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.1">
+                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-presenter-control" class="internal xref">Presenter Control</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.2">
+                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-issuer-binding" class="internal xref">Issuer Binding</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
+                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-mediator-binding" class="internal xref">Mediator Binding</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.4">
+                    <p id="section-toc.1-1.5.2.2.2.4.1"><a href="#section-5.2.4" class="auto internal xref">5.2.4</a>.  <a href="#name-selective-disclosure" class="internal xref">Selective Disclosure</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.5">
+                    <p id="section-toc.1-1.5.2.2.2.5.1"><a href="#section-5.2.5" class="auto internal xref">5.2.5</a>.  <a href="#name-non-linkability-and-data-mi" class="internal xref">Non-linkability and data minimization</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.6">
+                    <p id="section-toc.1-1.5.2.2.2.6.1"><a href="#section-5.2.6" class="auto internal xref">5.2.6</a>.  <a href="#name-revocation" class="internal xref">Revocation</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-relationships" class="internal xref">Relationships</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.1">
+                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="auto internal xref">5.3.1</a>.  <a href="#name-credentials-and-presentatio" class="internal xref">Credentials and Presentation Proofs</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.2">
+                    <p id="section-toc.1-1.5.2.3.2.2.1"><a href="#section-5.3.2" class="auto internal xref">5.3.2</a>.  <a href="#name-subject-and-presenter" class="internal xref">Subject and Presenter</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-trust-model" class="internal xref">Trust Model</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-general-flows" class="internal xref">General Flows</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-direct-presentation-flow" class="internal xref">Direct Presentation Flow</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-additional-flows" class="internal xref">Additional Flows</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-and-privacy-consid" class="internal xref">Security and Privacy Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-privacy" class="internal xref">Privacy</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-appendix" class="internal xref">Appendix</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2">
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="conventions">
+<section id="section-1">
+      <h2 id="name-conventions">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-conventions" class="section-name selfRef">Conventions</a>
+      </h2>
+<p id="section-1-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
+"<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
+described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
+appear in all capitals, as shown here.<a href="#section-1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="introduction">
+<section id="section-2">
+      <h2 id="name-introduction">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-2-1">Verifiable digital credentials, which assert claims about individuals,
+organizations, or devices, have become essential tools in modern identity
+systems. Whether verifying an individual's qualifications, attesting to an
+enterprise's compliance, or authorizing an IoT device, these credentials rely on
+secure, efficient, and privacy-preserving mechanisms for their use.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">Traditional federated identity systems often rely on intermediaries or
+delegation, which can compromise user privacy or introduce inefficiencies. This
+document presents an architecture for direct presentation flows, where
+credentials are presented directly to verifiers without unnecessary
+intermediaries, empowering the credential subject or their authorized
+representative to maintain control over the credential's use.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">At the heart of this architecture is the presentation mediator, an active
+software component responsible for facilitating secure and privacy-aware
+interactions. This mediator works in tandem with passive credential stores,
+verifiers, and issuers, creating a scalable and interoperable system that can
+adapt to diverse regulatory and operational environments.<a href="#section-2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="use-cases">
+<section id="section-3">
+      <h2 id="name-use-cases">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-use-cases" class="section-name selfRef">Use Cases</a>
+    </h2>
+</section>
+</div>
+<div id="terminology">
+<section id="section-4">
+      <h2 id="name-terminology">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
+      </h2>
+<span class="break"></span><dl class="dlParallel" id="section-4-1">
+        <dt id="section-4-1.1">Credential Manager:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.2">
+          <p id="section-4-1.2.1">An application, hardware device, or service which securely stores, organizes,
+manages, and enables presentation of credentials. Digital wallets, password
+managers, and passkeys managers are examples of credential managers.<a href="#section-4-1.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.3">Credential Store:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.4">
+          <p id="section-4-1.4.1">A passive repository for securely storing credentials. It supports the
+presentation mediator by providing access to stored credentials without
+performing active operations.<a href="#section-4-1.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.5">Credential Subject:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.6">
+          <p id="section-4-1.6.1">The entity the credential pertains to, such as an individual, organization,
+or object.<a href="#section-4-1.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.7">Issuance:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.8">
+          <p id="section-4-1.8.1">TBD<a href="#section-4-1.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.9">Issuance Protocol:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.10">
+          <p id="section-4-1.10.1">TBD<a href="#section-4-1.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.11">Issuer:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.12">
+          <p id="section-4-1.12.1">The entity that cryptographically signs a verifiable digital credential,
+thereby asserting its claims about a subject.<a href="#section-4-1.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.13">Issuer service:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.14">
+          <p id="section-4-1.14.1">The underlying platform or infrastructure service which enables an Issuer to
+issue a verifiable digital credential.<a href="#section-4-1.14.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.15">Local Device:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.16">
+          <p id="section-4-1.16.1">TBD<a href="#section-4-1.16.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.17">Mediation API:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.18">
+          <p id="section-4-1.18.1">TBD<a href="#section-4-1.18.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.19">Nearby Device:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.20">
+          <p id="section-4-1.20.1">TBD<a href="#section-4-1.20.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.21">Presentation:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.22">
+          <p id="section-4-1.22.1">TBD<a href="#section-4-1.22.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.23">Presentation Mediator:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.24">
+          <p id="section-4-1.24.1">a software user agent that manages the presentation of credentials to the
+verifier on behalf of the presenter. It is responsible for initiating and
+mediating credential presentations, ensuring compliance with presenter
+preferences and system policies. The presenter controls a presentation mediator.<a href="#section-4-1.24.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.25">Presentation Proof:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.26">
+          <p id="section-4-1.26.1">Proof to a verifier that a particular issuer has provided a verifiable digital
+credential to the presentation mediator. A presentation proof is a derived
+artifact that proves claims from a credential in a specific interaction with a
+verifier.<a href="#section-4-1.26.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.27">Presentation Protocol:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.28">
+          <p id="section-4-1.28.1">TBD<a href="#section-4-1.28.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.29">Presenter:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.30">
+          <p id="section-4-1.30.1">The actor that delivers a presentation to a verifier. While often the
+credential subject, the presenter could also be a party authorized to present
+claims about the subject.<a href="#section-4-1.30.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.31">Verifiable digital credential (VDC):</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.32">
+          <p id="section-4-1.32.1">A cryptographically verifiable, tamper-evident assertion of claims about a
+subject, signed by an Issuer. VDCs are issued to a presenter, stored in a
+credential manager, and presented to a verifier.<a href="#section-4-1.32.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.33">Verifier:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.34">
+          <p id="section-4-1.34.1">The entity that cryptographically validates the authenticity and integrity of
+a verifiable digital credential. A verifier is typically, but not always, the
+relying party.<a href="#section-4-1.34.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-4-1.35">Verifier service:</dt>
+        <dd style="margin-left: 1.5em" id="section-4-1.36">
+          <p id="section-4-1.36.1">The underlying platform or infrastructure service which enables a Verifier to
+validate a verifiable digital credential.<a href="#section-4-1.36.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="architecture">
+<section id="section-5">
+      <h2 id="name-architecture">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-architecture" class="section-name selfRef">Architecture</a>
+      </h2>
+<div id="actor-descriptions">
+<section id="section-5.1">
+        <h3 id="name-actor-descriptions">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-actor-descriptions" class="section-name selfRef">Actor Descriptions</a>
+        </h3>
+<div id="presentation-mediator-credential-presentation-user-agent">
+<section id="section-5.1.1">
+          <h4 id="name-presentation-mediator-crede">
+<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-presentation-mediator-crede" class="section-name selfRef">Presentation Mediator (Credential Presentation User Agent)</a>
+          </h4>
+<p id="section-5.1.1-1">The presentation mediator is the core active component of this architecture. It
+is a user agent that initiates and mediates credential presentations, ensuring
+compliance with presenter preferences and system policies. For example, it might
+enforce selective disclosure, revealing only the subject's date of birth to a
+verifier while withholding other personal details.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-2">Often the presenter and subject are one and the same entity, e.g., a natural
+person controlling her own credentials. However, there are several situations
+where the presenter and subject are different entities. For instance, cases
+where presentation is delegated from a legal entity to an officer of a company
+or when care staff helps somebody with disabilities present personal credentials.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-3">Unlike a credential store, the presentation mediator is responsible for
+orchestrating interactions with verifiers, performing cryptographic operations,
+and generating presentation proofs.<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-4">The mediator is used by the presenter to communicate with issuers verifiers. The
+nature of the control the presenter has over the mediator varies but minimally
+the presenter must be able to initiate the receipt of credentials from an issuer
+the generation and transmission of presentation proofs to a verifier.<a href="#section-5.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-5">The mediator acts on behalf of the presenter when receiving credentials from an
+issuer and the issuance process typically involves authenticating the presenter
+to the issuer.<a href="#section-5.1.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="credential-store">
+<section id="section-5.1.2">
+          <h4 id="name-credential-store">
+<a href="#section-5.1.2" class="section-number selfRef">5.1.2. </a><a href="#name-credential-store" class="section-name selfRef">Credential Store</a>
+          </h4>
+<p id="section-5.1.2-1">The credential store is a passive repository where credentials are securely
+stored. Its primary function is to provide the presentation mediator with access
+to the credentials it needs to generate presentation proofs. By separating
+storage from active mediation, the architecture enhances modularity and allows
+credential stores to be managed independently from presentation logic.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="issuer-and-verifier">
+<section id="section-5.1.3">
+          <h4 id="name-issuer-and-verifier">
+<a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-issuer-and-verifier" class="section-name selfRef">Issuer and Verifier</a>
+          </h4>
+<p id="section-5.1.3-1">An issuer is a set of protocol endpoints that allow a mediator to receive a
+credential. Credentials issued by the issuer are cryptographically bound to that
+issuer and to the receiving mediator.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-2">A verifier is a set of protocol endpoints that allow a mediator to send a
+presentation to a verifier. A verifier is typically a component used to provide
+an application with data about the subject - for instance in the context of an
+authentication process.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="behavioral-constraints">
+<section id="section-5.2">
+        <h3 id="name-behavioral-constraints">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-behavioral-constraints" class="section-name selfRef">Behavioral Constraints</a>
+        </h3>
+<p id="section-5.2-1">TBD - more constraints<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<div id="presenter-control">
+<section id="section-5.2.1">
+          <h4 id="name-presenter-control">
+<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-presenter-control" class="section-name selfRef">Presenter Control</a>
+          </h4>
+<p id="section-5.2.1-1">The mediator <span class="bcp14">SHOULD</span> provide the presenter with the means to control which data
+from a credential is used in a presentation proof.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-2">The mediator <span class="bcp14">MUST NOT</span> be able to generate a presentation proof without the
+participation and approval of the credential presenter.<a href="#section-5.2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="issuer-binding">
+<section id="section-5.2.2">
+          <h4 id="name-issuer-binding">
+<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-issuer-binding" class="section-name selfRef">Issuer Binding</a>
+          </h4>
+<p id="section-5.2.2-1">A verifier <span class="bcp14">MUST</span> be able to verify the identity of the issuer of the credential
+from a presentation proof.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="mediator-binding">
+<section id="section-5.2.3">
+          <h4 id="name-mediator-binding">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-mediator-binding" class="section-name selfRef">Mediator Binding</a>
+          </h4>
+<p id="section-5.2.3-1">The verifier <span class="bcp14">MUST</span> be able to verify that the mediator sending the presentation
+proof is the same mediator that received the credential from which the
+presentation proof was derived.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-2">Note that this is often termed 'holder' binding because the mediator is a user
+agent for the presenter, and the presenter is sometimes called the holder.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="selective-disclosure">
+<section id="section-5.2.4">
+          <h4 id="name-selective-disclosure">
+<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-selective-disclosure" class="section-name selfRef">Selective Disclosure</a>
+          </h4>
+<p id="section-5.2.4-1">A conformant implementation <span class="bcp14">SHOULD</span> identify a format for representing digital
+credentials that make it possible for the presenter to select a subset of the
+claims in the credential for inclusion in a presentation proof.<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-2">Note: there are situations where selective disclosure isn't applicable, for
+instance when the presenter is legally compelled to present a credential.
+Exactly when selective disclosure is available as an option and what aspects of
+the credential are meaningful to select is an implementation issue and out of
+scope.<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="non-linkability-and-data-minimization">
+<section id="section-5.2.5">
+          <h4 id="name-non-linkability-and-data-mi">
+<a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-non-linkability-and-data-mi" class="section-name selfRef">Non-linkability and data minimization</a>
+          </h4>
+<p id="section-5.2.5-1">The verifier <span class="bcp14">MUST NOT</span> be able to infer information about data or subjects not
+present in the presentation. This includes any association between the mediator
+or subject and other issuers and verifiers not associated with the presentation.
+In particular, colluding verifiers <span class="bcp14">MUST NOT</span> be able to infer data not present in
+presentation proofs.<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="revocation">
+<section id="section-5.2.6">
+          <h4 id="name-revocation">
+<a href="#section-5.2.6" class="section-number selfRef">5.2.6. </a><a href="#name-revocation" class="section-name selfRef">Revocation</a>
+          </h4>
+<p id="section-5.2.6-1">A conformant implementation <span class="bcp14">SHOULD</span> provide a way for an issuer to revoke an
+issued digital credential in such a way that subsequent attempts by a verifier
+to verify the authenticity of proofs based on that credential fail.<a href="#section-5.2.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="relationships">
+<section id="section-5.3">
+        <h3 id="name-relationships">
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-relationships" class="section-name selfRef">Relationships</a>
+        </h3>
+<p id="section-5.3-1">TBD - more (and better?) relationships<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<div id="credentials-and-presentation-proofs">
+<section id="section-5.3.1">
+          <h4 id="name-credentials-and-presentatio">
+<a href="#section-5.3.1" class="section-number selfRef">5.3.1. </a><a href="#name-credentials-and-presentatio" class="section-name selfRef">Credentials and Presentation Proofs</a>
+          </h4>
+<p id="section-5.3.1-1">A verifiable digital credential is an object representing a set of claims
+associated with a subject. The credential <span class="bcp14">MAY</span> contain claims that uniquely
+identify a single subject. A verifiable digital credential is typically
+cryptographically bound both to the issuer and to the mediator to which it is
+issued.<a href="#section-5.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.3.1-2">A presentation proof can be:
+1. Based on data present in a single credential.
+1. Based on data present in multiple credentials.
+1. Based on the result of computations made on a set of credentials.<a href="#section-5.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.3.1-3">One example is a presentation proof that a subject is legally permitted to take
+driving lessons. This is a binary attribute which is the result of a computation
+involving knowledge of both the biological age of the subject as well as legal
+restrictions that apply to the jurisdiction where the verifier is operating.<a href="#section-5.3.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="subject-and-presenter">
+<section id="section-5.3.2">
+          <h4 id="name-subject-and-presenter">
+<a href="#section-5.3.2" class="section-number selfRef">5.3.2. </a><a href="#name-subject-and-presenter" class="section-name selfRef">Subject and Presenter</a>
+          </h4>
+<p id="section-5.3.2-1">The credential subject is the entity that the credential describes, such as an
+individual, an organization, or even an IoT device. However, the presenter—the
+actor delivering the credential to the verifier—may not always be the credential
+subject. For example, an administrator might present credentials on behalf of an
+organization, or a customs broker might act as a presenter for a credential
+about goods in a shopment.<a href="#section-5.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.3.2-2">This distinction between the credential subject and the presenter allows the
+architecture to support complex use cases, such as power-of-attorney scenarios
+or enterprise credentialing systems.<a href="#section-5.3.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="trust-model">
+<section id="section-6">
+      <h2 id="name-trust-model">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-trust-model" class="section-name selfRef">Trust Model</a>
+      </h2>
+<p id="section-6-1">TBD<a href="#section-6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="general-flows">
+<section id="section-7">
+      <h2 id="name-general-flows">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-general-flows" class="section-name selfRef">General Flows</a>
+      </h2>
+<p id="section-7-1">Credential presentation flows describe how information from credentials are
+transmitted from the mediator to the verifier. This architecture focuses on
+direct presentation flows, but it also accommodates variations such as delegated
+and assisted presentations.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div id="direct-presentation-flow">
+<section id="section-7.1">
+        <h3 id="name-direct-presentation-flow">
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-direct-presentation-flow" class="section-name selfRef">Direct Presentation Flow</a>
+        </h3>
+<span id="name-basic-verifiable-cigital-cr"></span><div id="fig-basic-flow">
+<figure id="figure-1">
+          <div id="section-7.1-1.1">
+            <div class="alignLeft art-svg artwork" id="section-7.1-1.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="1424" viewBox="0 0 1424 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,96 L 8,320" fill="none" stroke="black"></path>
+                <path d="M 88,32 L 88,64" fill="none" stroke="black"></path>
+                <path d="M 88,656 L 88,688" fill="none" stroke="black"></path>
+                <path d="M 104,96 L 104,128" fill="none" stroke="black"></path>
+                <path d="M 120,64 L 120,656" fill="none" stroke="black"></path>
+                <path d="M 152,32 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 152,656 L 152,688" fill="none" stroke="black"></path>
+                <path d="M 248,368 L 248,640" fill="none" stroke="black"></path>
+                <path d="M 352,32 L 352,64" fill="none" stroke="black"></path>
+                <path d="M 352,656 L 352,688" fill="none" stroke="black"></path>
+                <path d="M 376,368 L 376,400" fill="none" stroke="black"></path>
+                <path d="M 392,64 L 392,656" fill="none" stroke="black"></path>
+                <path d="M 424,32 L 424,64" fill="none" stroke="black"></path>
+                <path d="M 424,656 L 424,688" fill="none" stroke="black"></path>
+                <path d="M 440,544 L 440,576" fill="none" stroke="black"></path>
+                <path d="M 800,32 L 800,64" fill="none" stroke="black"></path>
+                <path d="M 800,656 L 800,688" fill="none" stroke="black"></path>
+                <path d="M 832,64 L 832,408" fill="none" stroke="black"></path>
+                <path d="M 832,424 L 832,456" fill="none" stroke="black"></path>
+                <path d="M 832,472 L 832,504" fill="none" stroke="black"></path>
+                <path d="M 832,520 L 832,616" fill="none" stroke="black"></path>
+                <path d="M 832,640 L 832,656" fill="none" stroke="black"></path>
+                <path d="M 856,32 L 856,64" fill="none" stroke="black"></path>
+                <path d="M 856,656 L 856,688" fill="none" stroke="black"></path>
+                <path d="M 888,224 L 888,256" fill="none" stroke="black"></path>
+                <path d="M 1088,32 L 1088,64" fill="none" stroke="black"></path>
+                <path d="M 1088,656 L 1088,688" fill="none" stroke="black"></path>
+                <path d="M 1128,64 L 1128,456" fill="none" stroke="black"></path>
+                <path d="M 1128,472 L 1128,504" fill="none" stroke="black"></path>
+                <path d="M 1128,520 L 1128,656" fill="none" stroke="black"></path>
+                <path d="M 1152,96 L 1152,320" fill="none" stroke="black"></path>
+                <path d="M 1160,32 L 1160,64" fill="none" stroke="black"></path>
+                <path d="M 1160,656 L 1160,688" fill="none" stroke="black"></path>
+                <path d="M 1256,32 L 1256,64" fill="none" stroke="black"></path>
+                <path d="M 1256,656 L 1256,688" fill="none" stroke="black"></path>
+                <path d="M 1296,64 L 1296,656" fill="none" stroke="black"></path>
+                <path d="M 1336,32 L 1336,64" fill="none" stroke="black"></path>
+                <path d="M 1336,656 L 1336,688" fill="none" stroke="black"></path>
+                <path d="M 1416,368 L 1416,640" fill="none" stroke="black"></path>
+                <path d="M 88,32 L 152,32" fill="none" stroke="black"></path>
+                <path d="M 352,32 L 424,32" fill="none" stroke="black"></path>
+                <path d="M 800,32 L 856,32" fill="none" stroke="black"></path>
+                <path d="M 1088,32 L 1160,32" fill="none" stroke="black"></path>
+                <path d="M 1256,32 L 1336,32" fill="none" stroke="black"></path>
+                <path d="M 88,64 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 352,64 L 424,64" fill="none" stroke="black"></path>
+                <path d="M 800,64 L 856,64" fill="none" stroke="black"></path>
+                <path d="M 1088,64 L 1160,64" fill="none" stroke="black"></path>
+                <path d="M 1256,64 L 1336,64" fill="none" stroke="black"></path>
+                <path d="M 8,96 L 1152,96" fill="none" stroke="black"></path>
+                <path d="M 8,128 L 104,128" fill="none" stroke="black"></path>
+                <path d="M 120,144 L 384,144" fill="none" stroke="black"></path>
+                <path d="M 392,192 L 824,192" fill="none" stroke="black"></path>
+                <path d="M 832,224 L 888,224" fill="none" stroke="black"></path>
+                <path d="M 840,256 L 888,256" fill="none" stroke="black"></path>
+                <path d="M 400,304 L 832,304" fill="none" stroke="black"></path>
+                <path d="M 8,320 L 1152,320" fill="none" stroke="black"></path>
+                <path d="M 248,368 L 1416,368" fill="none" stroke="black"></path>
+                <path d="M 248,400 L 376,400" fill="none" stroke="black"></path>
+                <path d="M 400,416 L 1128,416" fill="none" stroke="black"></path>
+                <path d="M 392,464 L 1288,464" fill="none" stroke="black"></path>
+                <path d="M 400,512 L 1296,512" fill="none" stroke="black"></path>
+                <path d="M 392,544 L 440,544" fill="none" stroke="black"></path>
+                <path d="M 400,576 L 440,576" fill="none" stroke="black"></path>
+                <path d="M 392,624 L 1120,624" fill="none" stroke="black"></path>
+                <path d="M 248,640 L 1416,640" fill="none" stroke="black"></path>
+                <path d="M 88,656 L 152,656" fill="none" stroke="black"></path>
+                <path d="M 352,656 L 424,656" fill="none" stroke="black"></path>
+                <path d="M 800,656 L 856,656" fill="none" stroke="black"></path>
+                <path d="M 1088,656 L 1160,656" fill="none" stroke="black"></path>
+                <path d="M 1256,656 L 1336,656" fill="none" stroke="black"></path>
+                <path d="M 88,688 L 152,688" fill="none" stroke="black"></path>
+                <path d="M 352,688 L 424,688" fill="none" stroke="black"></path>
+                <path d="M 800,688 L 856,688" fill="none" stroke="black"></path>
+                <path d="M 1088,688 L 1160,688" fill="none" stroke="black"></path>
+                <path d="M 1256,688 L 1336,688" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="1296,464 1284,458.4 1284,469.6" fill="black" transform="rotate(0,1288,464)"></polygon>
+                <polygon class="arrowhead" points="1128,624 1116,618.4 1116,629.6" fill="black" transform="rotate(0,1120,624)"></polygon>
+                <polygon class="arrowhead" points="848,256 836,250.4 836,261.6" fill="black" transform="rotate(180,840,256)"></polygon>
+                <polygon class="arrowhead" points="832,192 820,186.4 820,197.6" fill="black" transform="rotate(0,824,192)"></polygon>
+                <polygon class="arrowhead" points="408,576 396,570.4 396,581.6" fill="black" transform="rotate(180,400,576)"></polygon>
+                <polygon class="arrowhead" points="408,512 396,506.4 396,517.6" fill="black" transform="rotate(180,400,512)"></polygon>
+                <polygon class="arrowhead" points="408,416 396,410.4 396,421.6" fill="black" transform="rotate(180,400,416)"></polygon>
+                <polygon class="arrowhead" points="408,304 396,298.4 396,309.6" fill="black" transform="rotate(180,400,304)"></polygon>
+                <polygon class="arrowhead" points="392,144 380,138.4 380,149.6" fill="black" transform="rotate(0,384,144)"></polygon>
+                <g class="text">
+                  <text x="120" y="52">Subject</text>
+                  <text x="388" y="52">Mediator</text>
+                  <text x="828" y="52">Issuer</text>
+                  <text x="1124" y="52">Verifier</text>
+                  <text x="1296" y="52">Presenter</text>
+                  <text x="52" y="116">ISSUANCE</text>
+                  <text x="164" y="132">&lt;&lt;initiate</text>
+                  <text x="252" y="132">credential</text>
+                  <text x="336" y="132">request&gt;&gt;</text>
+                  <text x="568" y="180">request</text>
+                  <text x="644" y="180">credential</text>
+                  <text x="940" y="244">&lt;&lt;generate</text>
+                  <text x="1036" y="244">credential&gt;&gt;</text>
+                  <text x="604" y="292">credential</text>
+                  <text x="308" y="388">VERIFICATION</text>
+                  <text x="960" y="404">request</text>
+                  <text x="1044" y="404">presentation</text>
+                  <text x="532" y="452">&lt;&lt;prompt</text>
+                  <text x="580" y="452">to</text>
+                  <text x="620" y="452">select</text>
+                  <text x="712" y="452">credential(s)&gt;&gt;</text>
+                  <text x="524" y="500">&lt;&lt;select</text>
+                  <text x="588" y="500">claims</text>
+                  <text x="636" y="500">from</text>
+                  <text x="720" y="500">credential(s)&gt;&gt;</text>
+                  <text x="484" y="564">&lt;&lt;generate</text>
+                  <text x="580" y="564">presentation</text>
+                  <text x="656" y="564">proof</text>
+                  <text x="728" y="564">selection&gt;&gt;</text>
+                  <text x="716" y="612">presentation</text>
+                  <text x="792" y="612">proof</text>
+                  <text x="120" y="676">Subject</text>
+                  <text x="388" y="676">Mediator</text>
+                  <text x="828" y="676">Issuer</text>
+                  <text x="1124" y="676">Verifier</text>
+                  <text x="1296" y="676">Presenter</text>
+                </g>
+              </svg><a href="#section-7.1-1.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-basic-verifiable-cigital-cr" class="selfRef">Basic Verifiable Cigital Credential Flow</a>
+          </figcaption></figure>
+</div>
+<p id="section-7.1-2">The mediator (acting on behalf of the subject) requests a credential from the
+issuer. The way this flow is initiated is implementation dependent and in some
+cases (notably in <span>[<a href="#OIDC4VCI" class="cite xref">OIDC4VCI</a>]</span>) the flow often starts with the subject visiting
+a web page at the issuer where the subject is first authenticated and then
+presented with means to launch a credential issuance request using their
+mediator. These details are left out from the diagram above.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+<p id="section-7.1-3">The credential is generated by the issuer presumably based on information the
+issuer has about the credential subject but exactly how the credential is
+generated is implementation dependent and out of scope for this specification.
+The claims in the credential typically comes from some source with which the
+issuer has a trust relationship. The term "authentic source" is sometimes used
+when there is a need to distinguish the source of the claims in a credential
+from the source of the credential which by definition is the issuer.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
+<p id="section-7.1-4">The mediator receives a credential from the issuer. The credential is bound both
+to the mediator and to the issuer in such a way that presentation proofs
+generated from the credential can be used to verify said bindings.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+<p id="section-7.1-5">At some later point, the subject wants to use the credentials in their mediator
+to provide identity data to an application. The application has a verifier (a
+specific software component responsible for verifying presentation proofs)
+associated with it. The mediator - often after involving the user in some form
+of interaction to choose which credential(s) to use and what parts of the
+credential(s) to include - generates a presentation proof and sends it to the
+verifier. The precise way this flow is initiated is again implementation
+dependent and in some cases (notably <span>[<a href="#OIDC4VP" class="cite xref">OIDC4VP</a>]</span>) the flow starts with the
+subject visiting the application and hitting a "login" button which directs the
+users device to launch the mediator to complete the flow. These details are left
+out of the diagram above.<a href="#section-7.1-5" class="pilcrow">¶</a></p>
+<p id="section-7.1-6">Upon receipt of the presentation the verifier verifies the issuer and mediator
+binding (aka holder binding) of the proof and - if the implementation supports
+revocation - the current validity of the underlying credential(s). If successful
+the data in the proof is made available to the application.<a href="#section-7.1-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="additional-flows">
+<section id="section-7.2">
+        <h3 id="name-additional-flows">
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-additional-flows" class="section-name selfRef">Additional Flows</a>
+        </h3>
+<p id="section-7.2-1">TBD<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="security-and-privacy-considerations">
+<section id="section-8">
+      <h2 id="name-security-and-privacy-consid">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-and-privacy-consid" class="section-name selfRef">Security and Privacy Considerations</a>
+      </h2>
+<p id="section-8-1">## Security<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">One of the main security considerations of a direct presentation credential
+architecture is how to establish the transactional trust between both the
+entities (mediators, issuers and verifiers) as well as the technical trust
+necessary for the cryptographic binding between the digital credentials and
+their associated presentation. Digital credentials are sometimes long-lived
+which also raises the issue of revocation with its associated security
+requirements.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<div id="privacy">
+<section id="section-8.1">
+        <h3 id="name-privacy">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-privacy" class="section-name selfRef">Privacy</a>
+        </h3>
+<p id="section-8.1-1">TBD<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-9">
+      <h2 id="name-iana-considerations">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-9-1">This document has no IANA considerations.<a href="#section-9-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="appendix">
+<section id="section-10">
+      <h2 id="name-appendix">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-appendix" class="section-name selfRef">Appendix</a>
+      </h2>
+<p id="section-10-1">## Examples of Components
+## Exploration of Standardization Gaps<a href="#section-10-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-combined-references">
+<section id="section-11">
+      <h2 id="name-references">
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-11.1">
+        <h3 id="name-normative-references">
+<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="BSL">[BSL]</dt>
+        <dd>
+<span class="refAuthor">Sporny, M.</span>, <span class="refAuthor">Longley, D.</span>, <span class="refAuthor">Prorock, M.</span>, and <span class="refAuthor">M. Alkhraishi</span>, <span class="refTitle">"Bitstring Status List v1.0"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.w3.org/TR/vc-bitstring-status-list/">https://www.w3.org/TR/vc-bitstring-status-list/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="CID">[CID]</dt>
+        <dd>
+<span class="refAuthor">Sporny, M.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Controlled Identifiers v1.0"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.w3.org/TR/cid-1.0/">https://www.w3.org/TR/cid-1.0/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="DID">[DID]</dt>
+        <dd>
+<span class="refAuthor">Sporny, M.</span>, <span class="refAuthor">Guy, A.</span>, <span class="refAuthor">Sabadello, M.</span>, and <span class="refAuthor">D. Reed</span>, <span class="refTitle">"Decentralized Identifiers (DIDs) v1.0"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.w3.org/TR/did-1.0/">https://www.w3.org/TR/did-1.0/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="OIDC4VCI">[OIDC4VCI]</dt>
+        <dd>
+<span class="refAuthor">Lodderstedt, T.</span>, <span class="refAuthor">Yasuda, K.</span>, and <span class="refAuthor">T. Looker</span>, <span class="refTitle">"OpenID for Verifiable Credential Issuance"</span>, <span>n.d.</span>, <span>&lt;<a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="OIDC4VP">[OIDC4VP]</dt>
+        <dd>
+<span class="refAuthor">Terbu, O.</span>, <span class="refAuthor">Lodderstedt, T.</span>, <span class="refAuthor">Yasuda, K.</span>, <span class="refAuthor">Lemmon, A.</span>, and <span class="refAuthor">T. Looker</span>, <span class="refTitle">"OpenID for Verifiable Presentations"</span>, <span>n.d.</span>, <span>&lt;<a href="https://openid.net/specs/openid-connect-4-verifiable-presentations-1_0-07.html#name-authors-addresses">https://openid.net/specs/openid-connect-4-verifiable-presentations-1_0-07.html#name-authors-addresses</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="SDJWT">[SDJWT]</dt>
+        <dd>
+<span class="refAuthor">Fett, D.</span>, <span class="refAuthor">Yasuda, K.</span>, and <span class="refAuthor">B. Campbell</span>, <span class="refTitle">"Selective Disclosure for JWTs (SD-JWT)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-oauth-selective-disclosure-jwt-22</span>, <time datetime="2025-05-29" class="refDate">29 May 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-selective-disclosure-jwt-22">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-selective-disclosure-jwt-22</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="VCDM2">[VCDM2]</dt>
+        <dd>
+<span class="refAuthor">Sporny, M.</span>, <span class="refAuthor">Thibodeau, T.</span>, <span class="refAuthor">Herman, I.</span>, <span class="refAuthor">Cohen, C.</span>, and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Verifiable Credentials Data Model v2.0"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.w3.org/TR/vc-data-model-2.0/">https://www.w3.org/TR/vc-data-model-2.0/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="VCJOSE">[VCJOSE]</dt>
+      <dd>
+<span class="refAuthor">Prorock, M.</span>, <span class="refAuthor">Cohen, C.</span>, and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"Securing Verifiable Credentials using JOSE and COSE"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.w3.org/TR/vc-jose-cose/">https://www.w3.org/TR/vc-jose-cose/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-11.2">
+        <h3 id="name-informative-references">
+<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="ARF">[ARF]</dt>
+        <dd>
+<span class="refAuthor">COM</span>, <span class="refTitle">"The European Digital identity Wallet architecture and Reference framework"</span>, <span>n.d.</span>, <span>&lt;<a href="https://digital-strategy.ec.europa.eu/en/library/european-digital-identity-wallet-architecture-and-reference-framework">https://digital-strategy.ec.europa.eu/en/library/european-digital-identity-wallet-architecture-and-reference-framework</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="DIDKEY">[DIDKEY]</dt>
+        <dd>
+<span class="refAuthor">Longley, D.</span>, <span class="refAuthor">Zagidulin, D.</span>, and <span class="refAuthor">M. Sporny</span>, <span class="refTitle">"The did:key Method v0.7"</span>, <span>n.d.</span>, <span>&lt;<a href="https://w3c-ccg.github.io/did-key-spec/">https://w3c-ccg.github.io/did-key-spec/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="OPENIDC">[OPENIDC]</dt>
+        <dd>
+<span class="refAuthor">Sakimura, N.</span>, <span class="refAuthor">Bradley, J.</span>, <span class="refAuthor">Jones, M.</span>, <span class="refAuthor">de Medeiros, B.</span>, and <span class="refAuthor">C. Mortimore</span>, <span class="refTitle">"OpenID Connect Core 1.0"</span>, <time datetime="2014" class="refDate">2014</time>. </dd>
+<dd class="break"></dd>
+<dt id="PathToSSI">[PathToSSI]</dt>
+        <dd>
+<span class="refAuthor">Allen, C.</span>, <span class="refTitle">"The Path to Self-Sovereign Identity"</span>, <span>n.d.</span>, <span>&lt;<a href="http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html">http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="SAML">[SAML]</dt>
+        <dd>
+<span class="refAuthor">Hallam-Baker, P.</span> and <span class="refAuthor">E. Maler</span>, <span class="refTitle">"Assertions and Protocol for the OASIS Security Assertion Markup Language (SAML)"</span>, <span class="seriesInfo">OASIS Committee Specification sstc-core</span>, <time datetime="2002-05-31" class="refDate">31 May 2002</time>, <span>&lt;<a href="http://www.oasis-open.org/committees/security/docs/cs-sstc-core-01.pdf">http://www.oasis-open.org/committees/security/docs/cs-sstc-core-01.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="TSL">[TSL]</dt>
+      <dd>
+<span class="refAuthor">Looker, T.</span>, <span class="refAuthor">Bastian, P.</span>, and <span class="refAuthor">C. Bohrmann</span>, <span class="refTitle">"Token Status List"</span>, <span>n.d.</span>, <span>&lt;<a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/">https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-A">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-A-1">Several people have contributed to this text through discussion. The authors
+especially wish to acknowledge the following individuals who have helped shape
+the thinking around trust and identity in general and this topic in particular.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A-2.1">
+          <p id="appendix-A-2.1.1">Pamela Dingle<a href="#appendix-A-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.2">
+          <p id="appendix-A-2.2.1">Heather Flanagan<a href="#appendix-A-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.3">
+          <p id="appendix-A-2.3.1">Peter Altman<a href="#appendix-A-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.4">
+          <p id="appendix-A-2.4.1">Giuseppe DeMarco<a href="#appendix-A-2.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.5">
+          <p id="appendix-A-2.5.1">Lucy Lynch<a href="#appendix-A-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.6">
+          <p id="appendix-A-2.6.1">R.L. 'Bob' Morgan<a href="#appendix-A-2.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.7">
+          <p id="appendix-A-2.7.1">Jeff Hodges<a href="#appendix-A-2.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-2.8">
+          <p id="appendix-A-2.8.1">Rohan Mahy<a href="#appendix-A-2.8.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-B">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Leif Johansson</span></div>
+<div dir="auto" class="left"><span class="org">SIROS Foundation</span></div>
+<div dir="auto" class="left"><span class="country-name">Sweden</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:leifj@siros.org" class="email">leifj@siros.org</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Brent W. Zundel</span></div>
+<div dir="auto" class="left"><span class="org">Yubico</span></div>
+<div dir="auto" class="left"><span class="country-name">United States</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:brent.zundel@gmail.com" class="email">brent.zundel@gmail.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Tim Cappalli</span></div>
+<div dir="auto" class="left"><span class="org">Okta</span></div>
+<div dir="auto" class="left"><span class="country-name">United States</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:timcappalli@cloudauth.dev" class="email">timcappalli@cloudauth.dev</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Henk Birkholz</span></div>
+<div dir="auto" class="left"><span class="org">Fraunhofer SIT</span></div>
+<div dir="auto" class="left"><span class="country-name">Germany</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:henk.birkholz@ietf.contact" class="email">henk.birkholz@ietf.contact</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
