@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-20T03:40:42.411437+00:00",
+  "timestamp": "2026-09-22T03:34:05.112540+00:00",
   "repo": "ietf-wg-spice/vdcarch",
   "labels": [
     {
@@ -100,6 +100,62 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOPxQiac8AAAABEf9umA",
+      "title": "Reformat the Document",
+      "url": "https://github.com/ietf-wg-spice/vdcarch/pull/3",
+      "state": "MERGED",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Reformats the document according to the outline agreed to by the authors.\r\n\r\nPertinent language was moved to the new sections deemed most appropriate.\r\nA number of sections were consolidated.\r\n\r\nThe remaining text was removed.\r\n",
+      "createdAt": "2026-09-21T23:06:51Z",
+      "updatedAt": "2026-09-21T23:18:28Z",
+      "baseRepository": "ietf-wg-spice/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "b89c5c89dcb761ff7d0357ca1f3e8784fcedb0a2",
+      "headRepository": "brentzundel/vdcarch",
+      "headRefName": "revamp",
+      "headRefOid": "65ecd676254889e8c6ff22d21d61f9f3caf30dfe",
+      "closedAt": "2026-09-21T23:18:28Z",
+      "mergedAt": "2026-09-21T23:18:28Z",
+      "mergedBy": "brentzundel",
+      "mergeCommit": {
+        "oid": "79a68b24ea4bb0eb7ac7e6fa3de58dddd93154d4"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOPxQiac8AAAABEgFffw",
+      "title": "add TBDs and alphabetize terminology",
+      "url": "https://github.com/ietf-wg-spice/vdcarch/pull/4",
+      "state": "MERGED",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-09-21T23:29:44Z",
+      "updatedAt": "2026-09-21T23:30:31Z",
+      "baseRepository": "ietf-wg-spice/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "79a68b24ea4bb0eb7ac7e6fa3de58dddd93154d4",
+      "headRepository": "brentzundel/vdcarch",
+      "headRefName": "revamp",
+      "headRefOid": "562fd0c13a6bfa2c058f6382f08721d966895085",
+      "closedAt": "2026-09-21T23:30:31Z",
+      "mergedAt": "2026-09-21T23:30:31Z",
+      "mergedBy": "brentzundel",
+      "mergeCommit": {
+        "oid": "28ae8650b9637c4f4d72c799bbc47cac82082944"
+      },
       "comments": [],
       "reviews": []
     }
