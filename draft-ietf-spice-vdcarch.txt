@@ -5,12 +5,12 @@
 Network Working Group                                       L. Johansson
 Internet-Draft                                          SIROS Foundation
 Intended status: Informational                                 B. Zundel
-Expires: 25 March 2027                                            Yubico
+Expires: 26 March 2027                                            Yubico
                                                              T. Cappalli
                                                                     Okta
                                                              H. Birkholz
-                                                         Frauenhofer SET
-                                                       21 September 2026
+                                                          Fraunhofer SIT
+                                                       22 September 2026
 
 
    A Reference Architecture for Verifiable Digital Credentials in the
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 March 2027.
+   This Internet-Draft will expire on 26 March 2027.
 
 Copyright Notice
 
@@ -594,6 +594,6 @@ Authors' Addresses
 
 
    Henk Birkholz
-   Frauenhofer SET
+   Fraunhofer SIT
    Germany
-   Email: henk.birkholz@sit.fraunhofer.de
+   Email: henk.birkholz@ietf.contact
