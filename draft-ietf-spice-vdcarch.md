@@ -37,8 +37,8 @@ author:
   -
      ins: H. Birkholz
      name: Henk Birkholz
-     organization: Frauenhofer SET
-     email: henk.birkholz@sit.fraunhofer.de
+     organization: Fraunhofer SIT
+     email: henk.birkholz@ietf.contact
      country: Germany
 
 informative:
