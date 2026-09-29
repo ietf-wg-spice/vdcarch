@@ -296,7 +296,7 @@ or transport bindings directly to the caller. These interfaces are typically
 provided by operating systems and user agents.
 
 Nearby Device:
-: A distinct physical deice in physical proximity to the Local Device,
+: A distinct physical device in physical proximity to the Local Device,
 which hosts a Credential Manager, and is accessed via a Mediation API.
 
 Presentation:
