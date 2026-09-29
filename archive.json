@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-24T03:24:38.270753+00:00",
+  "timestamp": "2026-09-29T04:31:37.283967+00:00",
   "repo": "ietf-wg-spice/vdcarch",
   "labels": [
     {
@@ -473,6 +473,32 @@
       "mergeCommit": {
         "oid": "f4c31be098d8c6897661c91fc23ab83aea4a8cf3"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 23,
+      "id": "PR_kwDOPxQiac8AAAABFnqZ4w",
+      "title": "Some terminology work",
+      "url": "https://github.com/ietf-wg-spice/vdcarch/pull/23",
+      "state": "OPEN",
+      "author": "timcappalli",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-09-29T03:24:00Z",
+      "updatedAt": "2026-09-29T03:24:00Z",
+      "baseRepository": "ietf-wg-spice/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "f4c31be098d8c6897661c91fc23ab83aea4a8cf3",
+      "headRepository": "ietf-wg-spice/vdcarch",
+      "headRefName": "tc-terminology",
+      "headRefOid": "24efcfa0efe30060ca7c8545f7e83bccc38ebcbf",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
