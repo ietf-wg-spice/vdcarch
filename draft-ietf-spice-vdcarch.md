@@ -255,7 +255,7 @@ adapt to diverse regulatory and operational environments.
 Credential Manager:
 : An application, hardware device, or service which securely stores, organizes,
 manages, and enables presentation of credentials. Digital wallets, password
-managers, and passkeys managers are examples of credential managers.
+managers, and passkeys managers are examples of Credential Managers.
 
 Credential Store:
 : A passive repository for securely storing credentials. It supports the
@@ -270,7 +270,7 @@ Holder:
 : TBD
 
 Issuance:
-: The process of cryptographically signing a verifiable digital credential,
+: The process of cryptographically signing a Verifiable Digital Credential,
 and delivering it to a holder's Credential Manager
 
 Issuance Protocol:
@@ -309,10 +309,10 @@ mediating credential presentations, ensuring compliance with presenter
 preferences and system policies. The presenter controls a presentation mediator.
 
 Presentation Proof:
-: Proof to a verifier that a particular issuer has provided a verifiable digital
+: Proof to a Verifier that a particular issuer has provided a verifiable digital
 credential to the presentation mediator. A presentation proof is a derived
 artifact that proves claims from a credential in a specific interaction with a
-verifier.
+Verifier.
 
 Presentation Protocol:
 : An application-layer protocol used between a Verifier and a Credential Manager
@@ -323,19 +323,19 @@ Presenter:
 credential subject, the presenter could also be a party authorized to present
 claims about the subject.
 
-Verifiable digital credential (VDC):
+Verifiable Digital Credential (VDC):
 : A cryptographically verifiable, tamper-evident assertion of claims about a
-subject, signed by an Issuer. VDCs are issued to a holder, stored in a
-credential manager, and presented to a verifier.
+subject, signed by an Issuer. VDCs are issued to a Holder, stored in a
+Credential Manager, and presented to a Verifier.
 
 Verifier:
 : The entity that cryptographically validates the authenticity and integrity of
-a verifiable digital credential. A verifier is typically, but not always, the
+a Verifiable Digital Credential. A Verifier is typically, but not always, the
 relying party.
 
-Verifier service:
+Verifier Service:
 : The underlying platform or infrastructure service which enables a Verifier to
-validate a verifiable digital credential.
+validate a Verifiable Digital Credential.
 
 # Architecture
 
