@@ -251,10 +251,11 @@ adapt to diverse regulatory and operational environments.
 # Use Cases
 
 # Terminology
+
 Credential Manager:
 : An application, hardware device, or service which securely stores, organizes,
 manages, and enables presentation of credentials. Digital wallets, password
-managers, and passkeys managers are examples of credential managers.
+managers, and passkeys managers are examples of Credential Managers.
 
 Credential Store:
 : A passive repository for securely storing credentials. It supports the
@@ -265,65 +266,76 @@ Credential Subject:
 : The entity the credential pertains to, such as an individual, organization,
 or object.
 
-Issuance:
+Holder:
 : TBD
 
+Issuance:
+: The process of cryptographically signing a Verifiable Digital Credential,
+and delivering it to a holder's Credential Manager
+
 Issuance Protocol:
-: TBD
+: An application-layer protocol used between an Issuer and Credential Manager
+to issue a Verifiable Digital Credential.
 
 Issuer:
 : The entity that cryptographically signs a verifiable digital credential,
 thereby asserting its claims about a subject.
 
-Issuer service:
+Issuer Service:
 : The underlying platform or infrastructure service which enables an Issuer to
-issue a verifiable digital credential.
+issue a Verifiable Digital Credential to a Holder's Credential Manager.
 
 Local Device:
-: TBD
+: The physical device hosting the user agent or application which interacts with
+an Issuer or Verifier, and exposes and/or invokes a Mediation API.
 
 Mediation API:
-: TBD
+: An interface which brokers communication between a calling application and a
+Credential Manager, without exposing the underlying credential storage, keys,
+or transport bindings directly to the caller. These interfaces are typically
+provided by operating systems and user agents.
 
 Nearby Device:
-: TBD
+: A distinct physical device in physical proximity to the Local Device,
+which hosts a Credential Manager, and is accessed via a Mediation API.
 
 Presentation:
 : TBD
 
 Presentation Mediator:
-: a software user agent that manages the presentation of credentials to the
+: A software user agent that manages the presentation of credentials to the
 verifier on behalf of the presenter. It is responsible for initiating and
 mediating credential presentations, ensuring compliance with presenter
 preferences and system policies. The presenter controls a presentation mediator.
 
 Presentation Proof:
-: Proof to a verifier that a particular issuer has provided a verifiable digital
-credential to the presentation mediator. A presentation proof is a derived
+: Proof to a Verifier that a particular issuer has provided a Verifiable Digital
+Credential to the Presentation Mediator. A Presentation Proof is a derived
 artifact that proves claims from a credential in a specific interaction with a
-verifier.
+Verifier.
 
 Presentation Protocol:
-: TBD
+: An application-layer protocol used between a Verifier and a Credential Manager
+to request claims from one or more Verifiable Digital Credentials.
 
 Presenter:
 : The actor that delivers a presentation to a verifier. While often the
 credential subject, the presenter could also be a party authorized to present
 claims about the subject.
 
-Verifiable digital credential (VDC):
+Verifiable Digital Credential (VDC):
 : A cryptographically verifiable, tamper-evident assertion of claims about a
-subject, signed by an Issuer. VDCs are issued to a presenter, stored in a
-credential manager, and presented to a verifier.
+subject, signed by an Issuer. VDCs are issued to a Holder, stored in a
+Credential Manager, and presented to a Verifier.
 
 Verifier:
 : The entity that cryptographically validates the authenticity and integrity of
-a verifiable digital credential. A verifier is typically, but not always, the
+a Verifiable Digital Credential. A Verifier is typically, but not always, the
 relying party.
 
-Verifier service:
+Verifier Service:
 : The underlying platform or infrastructure service which enables a Verifier to
-validate a verifiable digital credential.
+validate a Verifiable Digital Credential.
 
 # Architecture
 
