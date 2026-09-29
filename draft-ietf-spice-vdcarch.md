@@ -309,8 +309,8 @@ mediating credential presentations, ensuring compliance with presenter
 preferences and system policies. The presenter controls a presentation mediator.
 
 Presentation Proof:
-: Proof to a Verifier that a particular issuer has provided a verifiable digital
-credential to the presentation mediator. A presentation proof is a derived
+: Proof to a Verifier that a particular issuer has provided a Verifiable Digital
+Credential to the Presentation Mediator. A Presentation Proof is a derived
 artifact that proves claims from a credential in a specific interaction with a
 Verifier.
 
