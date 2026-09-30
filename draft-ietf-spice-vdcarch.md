@@ -293,9 +293,9 @@ Presentation:
 
 Presentation Mediator:
 : a software user agent that manages the presentation of credentials to the
-verifier on behalf of the presenter. It is responsible for initiating and
-mediating credential presentations, ensuring compliance with presenter
-preferences and system policies. The presenter controls a presentation mediator.
+verifier on behalf of the holder. It is responsible for initiating and
+mediating credential presentations, ensuring compliance with holder
+preferences and system policies. The holder controls a presentation mediator.
 
 Presentation Proof:
 : Proof to a verifier that a particular issuer has provided a verifiable digital
@@ -306,14 +306,14 @@ verifier.
 Presentation Protocol:
 : TBD
 
-Presenter:
-: The actor that delivers a presentation to a verifier. While often the
-credential subject, the presenter could also be a party authorized to present
-claims about the subject.
+Holder:
+: The actor that receives a credential from an issuer and delivers a
+presentation to a verifier. While often the credential subject, the holder
+could also be a party authorized to present claims about the subject.
 
 Verifiable digital credential (VDC):
 : A cryptographically verifiable, tamper-evident assertion of claims about a
-subject, signed by an Issuer. VDCs are issued to a presenter, stored in a
+subject, signed by an Issuer. VDCs are issued to a holder, stored in a
 credential manager, and presented to a verifier.
 
 Verifier:
@@ -333,13 +333,13 @@ validate a verifiable digital credential.
 
 The presentation mediator is the core active component of this architecture. It
 is a user agent that initiates and mediates credential presentations, ensuring
-compliance with presenter preferences and system policies. For example, it might
+compliance with holder preferences and system policies. For example, it might
 enforce selective disclosure, revealing only the subject's date of birth to a
 verifier while withholding other personal details.
 
-Often the presenter and subject are one and the same entity, e.g., a natural
+Often the holder and subject are one and the same entity, e.g., a natural
 person controlling her own credentials. However, there are several situations
-where the presenter and subject are different entities. For instance, cases
+where the holder and subject are different entities. For instance, cases
 where presentation is delegated from a legal entity to an officer of a company
 or when care staff helps somebody with disabilities present personal credentials.
 
@@ -347,13 +347,13 @@ Unlike a credential store, the presentation mediator is responsible for
 orchestrating interactions with verifiers, performing cryptographic operations,
 and generating presentation proofs.
 
-The mediator is used by the presenter to communicate with issuers verifiers. The
-nature of the control the presenter has over the mediator varies but minimally
-the presenter must be able to initiate the receipt of credentials from an issuer
+The mediator is used by the holder to communicate with issuers verifiers. The
+nature of the control the holder has over the mediator varies but minimally
+the holder must be able to initiate the receipt of credentials from an issuer
 the generation and transmission of presentation proofs to a verifier.
 
-The mediator acts on behalf of the presenter when receiving credentials from an
-issuer and the issuance process typically involves authenticating the presenter
+The mediator acts on behalf of the holder when receiving credentials from an
+issuer and the issuance process typically involves authenticating the holder
 to the issuer.
 
 ### Credential Store
@@ -379,13 +379,13 @@ authentication process.
 
 TBD - more constraints
 
-### Presenter Control
+### Holder Control
 
-The mediator SHOULD provide the presenter with the means to control which data
+The mediator SHOULD provide the holder with the means to control which data
 from a credential is used in a presentation proof.
 
 The mediator MUST NOT be able to generate a presentation proof without the
-participation and approval of the credential presenter.
+participation and approval of the credential holder.
 
 ### Issuer Binding
 
@@ -399,16 +399,16 @@ proof is the same mediator that received the credential from which the
 presentation proof was derived.
 
 Note that this is often termed 'holder' binding because the mediator is a user
-agent for the presenter, and the presenter is sometimes called the holder.
+agent for the holder.
 
 ### Selective Disclosure
 
 A conformant implementation SHOULD identify a format for representing digital
-credentials that make it possible for the presenter to select a subset of the
+credentials that make it possible for the holder to select a subset of the
 claims in the credential for inclusion in a presentation proof.
 
 Note: there are situations where selective disclosure isn't applicable, for
-instance when the presenter is legally compelled to present a credential.
+instance when the holder is legally compelled to present a credential.
 Exactly when selective disclosure is available as an option and what aspects of
 the credential are meaningful to select is an implementation issue and out of
 scope.
@@ -449,16 +449,16 @@ driving lessons. This is a binary attribute which is the result of a computation
 involving knowledge of both the biological age of the subject as well as legal
 restrictions that apply to the jurisdiction where the verifier is operating.
 
-### Subject and Presenter
+### Subject and Holder
 
 The credential subject is the entity that the credential describes, such as an
-individual, an organization, or even an IoT device. However, the presenter—the
+individual, an organization, or even an IoT device. However, the holder—the
 actor delivering the credential to the verifier—may not always be the credential
 subject. For example, an administrator might present credentials on behalf of an
-organization, or a customs broker might act as a presenter for a credential
+organization, or a customs broker might act as a holder for a credential
 about goods in a shopment.
 
-This distinction between the credential subject and the presenter allows the
+This distinction between the credential subject and the holder allows the
 architecture to support complex use cases, such as power-of-attorney scenarios
 or enterprise credentialing systems.
 
