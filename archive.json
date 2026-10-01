@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-29T04:31:37.283967+00:00",
+  "timestamp": "2026-10-01T04:26:55.006758+00:00",
   "repo": "ietf-wg-spice/vdcarch",
   "labels": [
     {
@@ -302,9 +302,31 @@
       "labels": [],
       "body": "from @martinthomson \n\n> I understand the reasoning, but that's what people call them.  Refusing to use common language is a pattern that does little more than signal something akin to intellectual elitism or disrespect for the way language has evolved.\n\n> (No hats for this, just a personal viewpoint I've long held, but avoided voicing because I wear a hat or two.)",
       "createdAt": "2026-09-23T22:41:33Z",
-      "updatedAt": "2026-09-23T22:41:33Z",
+      "updatedAt": "2026-09-29T14:29:22Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "leifj",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Holder is used in W3C already. Wallets are unfortunately sometimes used to mean the combination of issuer, holder and verifier capability.",
+          "createdAt": "2026-09-29T14:18:17Z",
+          "updatedAt": "2026-09-29T14:18:17Z"
+        },
+        {
+          "author": "timcappalli",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The challenge is that not all apps that hold VDCs are wallets. Most VDCs will not be stored in wallet. That's why we've migrate away from the term in technical docs across multiple venues such as W3C and FIDO, while still referencing it as an example of a Credential Manager. ",
+          "createdAt": "2026-09-29T14:26:59Z",
+          "updatedAt": "2026-09-29T14:26:59Z"
+        },
+        {
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree that credential mediator is a more precise term, and usage of a more precise term might signify intellectual elitism, but in this case it also is necessary to clarify. Wallet has become so overloaded with meaning, because everyone uses it slightly differently, that a more precise term is needed here.",
+          "createdAt": "2026-09-29T14:29:22Z",
+          "updatedAt": "2026-09-29T14:29:22Z"
+        }
+      ]
     },
     {
       "number": 21,
@@ -335,6 +357,22 @@
       "body": "Originally raised in https://github.com/leifj/vdcarch/issues/5\n\n- [x] Verifier\n- [x] Verifier service\n- [x] Issuer \n- [x] Issuer service\n- [x] Credential manager\n- [ ] Trust service\n- [ ] Trust framework\n- [ ] Holder\n- [ ] Holder binding\n- [ ] Authentic source\n- [ ] Credential to Biometric Binding (?)",
       "createdAt": "2026-09-23T22:47:02Z",
       "updatedAt": "2026-09-23T22:47:02Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 24,
+      "id": "I_kwDOPxQiac8AAAABT7KGAQ",
+      "title": "make sure normative and informative reference are still valid",
+      "url": "https://github.com/ietf-wg-spice/vdcarch/issues/24",
+      "state": "OPEN",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "check over the references",
+      "createdAt": "2026-09-29T14:21:55Z",
+      "updatedAt": "2026-09-29T14:21:55Z",
       "closedAt": null,
       "comments": []
     }
@@ -488,13 +526,99 @@
       "labels": [],
       "body": "",
       "createdAt": "2026-09-29T03:24:00Z",
-      "updatedAt": "2026-09-29T03:24:00Z",
+      "updatedAt": "2026-09-29T14:20:25Z",
       "baseRepository": "ietf-wg-spice/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "f4c31be098d8c6897661c91fc23ab83aea4a8cf3",
       "headRepository": "ietf-wg-spice/vdcarch",
       "headRefName": "tc-terminology",
-      "headRefOid": "24efcfa0efe30060ca7c8545f7e83bccc38ebcbf",
+      "headRefOid": "94564d3c15eacf3870a9faf2b127e84156c1549e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOPxQiac8AAAABPxxKJw",
+          "commit": {
+            "abbreviatedOid": "24efcfa"
+          },
+          "author": "leifj",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-29T14:08:54Z",
+          "updatedAt": "2026-09-29T14:08:54Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOPxQiac8AAAABPxwRLw",
+          "commit": {
+            "abbreviatedOid": "24efcfa"
+          },
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-29T14:07:44Z",
+          "updatedAt": "2026-09-29T14:09:57Z",
+          "comments": [
+            {
+              "originalPosition": 49,
+              "body": "```suggestion\n: A distinct physical device in physical proximity to the Local Device,\n```",
+              "createdAt": "2026-09-29T14:07:44Z",
+              "updatedAt": "2026-09-29T14:09:58Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "PR_kwDOPxQiac8AAAABF-2Xjw",
+      "title": "presenter -> holder",
+      "url": "https://github.com/ietf-wg-spice/vdcarch/pull/25",
+      "state": "OPEN",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #6 ",
+      "createdAt": "2026-09-30T21:50:40Z",
+      "updatedAt": "2026-09-30T21:50:40Z",
+      "baseRepository": "ietf-wg-spice/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "f4c31be098d8c6897661c91fc23ab83aea4a8cf3",
+      "headRepository": "brentzundel/vdcarch",
+      "headRefName": "issue-6",
+      "headRefOid": "2be1019ac5a77aca14f1ea3a751c63e715e66a7d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 26,
+      "id": "PR_kwDOPxQiac8AAAABF-27Zg",
+      "title": "Narrower diagram",
+      "url": "https://github.com/ietf-wg-spice/vdcarch/pull/26",
+      "state": "OPEN",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I'm not sure I like this, but it fits in the width limitations.\r\nwdyt?",
+      "createdAt": "2026-09-30T21:51:51Z",
+      "updatedAt": "2026-09-30T21:51:51Z",
+      "baseRepository": "ietf-wg-spice/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "f4c31be098d8c6897661c91fc23ab83aea4a8cf3",
+      "headRepository": "brentzundel/vdcarch",
+      "headRefName": "narrower-diagram",
+      "headRefOid": "2dee22f37a365659819b1de9c49026ed85146546",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
