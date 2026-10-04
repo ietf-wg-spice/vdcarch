@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-01T04:26:55.006758+00:00",
+  "timestamp": "2026-10-04T04:35:42.197775+00:00",
   "repo": "ietf-wg-spice/vdcarch",
   "labels": [
     {
@@ -612,19 +612,40 @@
       "labels": [],
       "body": "I'm not sure I like this, but it fits in the width limitations.\r\nwdyt?",
       "createdAt": "2026-09-30T21:51:51Z",
-      "updatedAt": "2026-09-30T21:51:51Z",
+      "updatedAt": "2026-10-02T19:37:47Z",
       "baseRepository": "ietf-wg-spice/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "f4c31be098d8c6897661c91fc23ab83aea4a8cf3",
       "headRepository": "brentzundel/vdcarch",
       "headRefName": "narrower-diagram",
-      "headRefOid": "2dee22f37a365659819b1de9c49026ed85146546",
+      "headRefOid": "34b3ebe9c4b6dfd6b96e2133ce2bb3c9a87faae6",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOPxQiac8AAAABQaC3sw",
+          "commit": {
+            "abbreviatedOid": "2dee22f"
+          },
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-02T19:37:38Z",
+          "updatedAt": "2026-10-02T19:37:39Z",
+          "comments": [
+            {
+              "originalPosition": 57,
+              "body": "```suggestion\n|    |  initiate            |  credential        |              |  |\n|    | credential         +------------------->|  generate    |  |\n|    |  request           |                    | credential   |  |\n```",
+              "createdAt": "2026-10-02T19:37:38Z",
+              "updatedAt": "2026-10-02T19:37:39Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
