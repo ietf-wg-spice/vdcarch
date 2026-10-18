@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-08T04:46:14.711247+00:00",
+  "timestamp": "2026-10-18T03:16:40.326687+00:00",
   "repo": "ietf-wg-spice/vdcarch",
   "labels": [
     {
@@ -47,6 +47,11 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "proposed to close",
+      "description": "It is proposed that the issue be closed without further action",
+      "color": "476639"
     }
   ],
   "issues": [
@@ -612,7 +617,7 @@
       "labels": [],
       "body": "I'm not sure I like this, but it fits in the width limitations.\r\nwdyt?",
       "createdAt": "2026-09-30T21:51:51Z",
-      "updatedAt": "2026-10-02T19:37:47Z",
+      "updatedAt": "2026-10-18T02:48:50Z",
       "baseRepository": "ietf-wg-spice/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "f4c31be098d8c6897661c91fc23ab83aea4a8cf3",
@@ -623,7 +628,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "timcappalli",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Is it worth separating them into two diagrams so issuance doesn't have verifier actor and verification doesn't have issuance actor?",
+          "createdAt": "2026-10-18T02:48:49Z",
+          "updatedAt": "2026-10-18T02:48:49Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOPxQiac8AAAABQaC3sw",
