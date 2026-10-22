@@ -98,6 +98,7 @@ Table of Contents
      11.1.  Normative References
      11.2.  Informative References
    Acknowledgments
+   Document History
    Authors' Addresses
 
 1.  Conventions
@@ -589,6 +590,47 @@ Acknowledgments
    *  Jeff Hodges
 
    *  Rohan Mahy
+
+Document History
+
+   -02
+
+   *  Changed the Title
+
+   *  Coverted ASCII diagram to AASVG
+
+   *  Revised the page header
+
+   *  Add Henk Birkholz as an author
+
+   *  Substantial restructuring of the document:
+
+      -  Created entirely new layout and moved existing text
+
+      -  Consolidated and revised terminology
+
+      -  Alphabetized terminology
+
+      -  Added TBDs
+
+      -  fixed line lengths
+
+   *  Updated terminology, capitalized official terms
+
+   *  changed presenter -> holder
+
+   *  significantly revised the diagram for simplicity and space
+
+   *  Added document history
+
+   -01
+
+   *  Initial working group draft, based on draft-zundel-vdcarch-00
+
+   -00
+
+   *  Draft that got created when someone accidentally hit the wrong
+      button even though it hadn't been adopted yet
 
 Authors' Addresses
 
