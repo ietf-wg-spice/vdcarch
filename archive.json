@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-18T03:16:40.326687+00:00",
+  "timestamp": "2026-10-25T03:26:17.439740+00:00",
   "repo": "ietf-wg-spice/vdcarch",
   "labels": [
     {
@@ -60,7 +60,7 @@
       "id": "I_kwDOPxQiac8AAAABSkKRPg",
       "title": "use Holder",
       "url": "https://github.com/ietf-wg-spice/vdcarch/issues/6",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "brentzundel",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -69,8 +69,8 @@
       "labels": [],
       "body": "currently uses presenter, switch to holder",
       "createdAt": "2026-09-22T14:15:44Z",
-      "updatedAt": "2026-09-22T14:15:47Z",
-      "closedAt": null,
+      "updatedAt": "2026-10-22T21:56:00Z",
+      "closedAt": "2026-10-22T21:56:00Z",
       "comments": []
     },
     {
@@ -524,24 +524,26 @@
       "id": "PR_kwDOPxQiac8AAAABFnqZ4w",
       "title": "Some terminology work",
       "url": "https://github.com/ietf-wg-spice/vdcarch/pull/23",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "timcappalli",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-09-29T03:24:00Z",
-      "updatedAt": "2026-09-29T14:20:25Z",
+      "updatedAt": "2026-10-22T21:54:44Z",
       "baseRepository": "ietf-wg-spice/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "f4c31be098d8c6897661c91fc23ab83aea4a8cf3",
       "headRepository": "ietf-wg-spice/vdcarch",
       "headRefName": "tc-terminology",
       "headRefOid": "94564d3c15eacf3870a9faf2b127e84156c1549e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-10-22T21:54:44Z",
+      "mergedAt": "2026-10-22T21:54:44Z",
+      "mergedBy": "brentzundel",
+      "mergeCommit": {
+        "oid": "258f0d18865d3c819648222175c5d157396677c9"
+      },
       "comments": [],
       "reviews": [
         {
@@ -584,24 +586,26 @@
       "id": "PR_kwDOPxQiac8AAAABF-2Xjw",
       "title": "presenter -> holder",
       "url": "https://github.com/ietf-wg-spice/vdcarch/pull/25",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "brentzundel",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "fixes #6 ",
       "createdAt": "2026-09-30T21:50:40Z",
-      "updatedAt": "2026-09-30T21:50:40Z",
+      "updatedAt": "2026-10-22T21:55:59Z",
       "baseRepository": "ietf-wg-spice/vdcarch",
       "baseRefName": "main",
-      "baseRefOid": "f4c31be098d8c6897661c91fc23ab83aea4a8cf3",
+      "baseRefOid": "258f0d18865d3c819648222175c5d157396677c9",
       "headRepository": "brentzundel/vdcarch",
       "headRefName": "issue-6",
-      "headRefOid": "2be1019ac5a77aca14f1ea3a751c63e715e66a7d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "cd24de883f509d581f149f9e0df2b056ac5bc6d2",
+      "closedAt": "2026-10-22T21:55:58Z",
+      "mergedAt": "2026-10-22T21:55:58Z",
+      "mergedBy": "brentzundel",
+      "mergeCommit": {
+        "oid": "5d74491e4a9a5253b50e7724e5c1356fcde6d681"
+      },
       "comments": [],
       "reviews": []
     },
@@ -610,24 +614,26 @@
       "id": "PR_kwDOPxQiac8AAAABF-27Zg",
       "title": "Narrower diagram",
       "url": "https://github.com/ietf-wg-spice/vdcarch/pull/26",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "brentzundel",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I'm not sure I like this, but it fits in the width limitations.\r\nwdyt?",
       "createdAt": "2026-09-30T21:51:51Z",
-      "updatedAt": "2026-10-18T02:48:50Z",
+      "updatedAt": "2026-10-22T21:56:39Z",
       "baseRepository": "ietf-wg-spice/vdcarch",
       "baseRefName": "main",
       "baseRefOid": "f4c31be098d8c6897661c91fc23ab83aea4a8cf3",
       "headRepository": "brentzundel/vdcarch",
       "headRefName": "narrower-diagram",
       "headRefOid": "34b3ebe9c4b6dfd6b96e2133ce2bb3c9a87faae6",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-10-22T21:56:39Z",
+      "mergedAt": "2026-10-22T21:56:39Z",
+      "mergedBy": "brentzundel",
+      "mergeCommit": {
+        "oid": "063959d6e7c08071b8e397c1c44dba5a28fa4ef3"
+      },
       "comments": [
         {
           "author": "timcappalli",
@@ -635,6 +641,13 @@
           "body": "Is it worth separating them into two diagrams so issuance doesn't have verifier actor and verification doesn't have issuance actor?",
           "createdAt": "2026-10-18T02:48:49Z",
           "updatedAt": "2026-10-18T02:48:49Z"
+        },
+        {
+          "author": "brentzundel",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@timcappalli I think that's a good next step, but for now I'm going to merge this one.",
+          "createdAt": "2026-10-22T21:56:33Z",
+          "updatedAt": "2026-10-22T21:56:33Z"
         }
       ],
       "reviews": [
@@ -659,6 +672,34 @@
           ]
         }
       ]
+    },
+    {
+      "number": 27,
+      "id": "PR_kwDOPxQiac8AAAABKIYtlg",
+      "title": "Changelog",
+      "url": "https://github.com/ietf-wg-spice/vdcarch/pull/27",
+      "state": "MERGED",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "add document history",
+      "createdAt": "2026-10-22T22:15:59Z",
+      "updatedAt": "2026-10-22T22:23:36Z",
+      "baseRepository": "ietf-wg-spice/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "063959d6e7c08071b8e397c1c44dba5a28fa4ef3",
+      "headRepository": "brentzundel/vdcarch",
+      "headRefName": "changelog",
+      "headRefOid": "6d96d7d3e8b3f07036edc3358b8eefb8a856462f",
+      "closedAt": "2026-10-22T22:23:36Z",
+      "mergedAt": "2026-10-22T22:23:36Z",
+      "mergedBy": "brentzundel",
+      "mergeCommit": {
+        "oid": "91fb89d6a9bfc4185ceee4ae1c285f13b1821c56"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
