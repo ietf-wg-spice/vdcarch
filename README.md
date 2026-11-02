@@ -2,16 +2,16 @@
 
 This is the working area for the individual Internet-Draft, "A reference architecture for verifiable digital credentials".
 
-* [Editor's Copy](https://ietf-wg-spice.github.io/vdcarch/#go.draft-ietf-spice-vcdarch.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-spice-vcdarch)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-ietf-spice-vcdarch)
-* [Compare Editor's Copy to Individual Draft](https://ietf-wg-spice.github.io/draft-ietf-spice-vcdarch/#go.draft-ietf-spice-vcdarch.diff)
+* [Editor's Copy](https://ietf-wg-spice.github.io/vdcarch/#go.draft-ietf-spice-vdcarch.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-spice-vdcarch)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-ietf-spice-vdcarch)
+* [Compare Editor's Copy to Individual Draft](https://ietf-wg-spice.github.io/draft-ietf-spice-vdcarch/#go.draft-ietf-spice-vdcarch.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/ietf-wg-spice/draft-ietf-spice-vcdarch/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/ietf-wg-spice/draft-ietf-spice-vdcarch/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
