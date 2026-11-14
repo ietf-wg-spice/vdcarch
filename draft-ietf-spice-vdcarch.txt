@@ -5,12 +5,12 @@
 Network Working Group                                       L. Johansson
 Internet-Draft                                          SIROS Foundation
 Intended status: Informational                                 B. Zundel
-Expires: 25 April 2027                                            Yubico
+Expires: 18 May 2027                                              Yubico
                                                              T. Cappalli
                                                                     Okta
                                                              H. Birkholz
                                                           Fraunhofer SIT
-                                                         22 October 2026
+                                                        14 November 2026
 
 
    A Reference Architecture for Verifiable Digital Credentials in the
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 April 2027.
+   This Internet-Draft will expire on 18 May 2027.
 
 Copyright Notice
 
@@ -383,7 +383,7 @@ Table of Contents
    +----+-----+              |                    |              |  |
    |    |                    |                    |              |  |
    |    +------------------->|   request          |              |  |
-   |    |  initiate            |  credential        |              |  |
+   |    |  initiate          |  credential        |              |  |
    |    | credential         +------------------->|  generate    |  |
    |    |  request           |                    | credential   |  |
    |    |                    |                    +------+       |  |
