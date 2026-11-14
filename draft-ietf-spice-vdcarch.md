@@ -497,7 +497,7 @@ and assisted presentations.
 +----+-----+              |                    |              |  |
 |    |                    |                    |              |  |
 |    +------------------->|   request          |              |  |
-|    |  initiate            |  credential        |              |  |
+|    |  initiate          |  credential        |              |  |
 |    | credential         +------------------->|  generate    |  |
 |    |  request           |                    | credential   |  |
 |    |                    |                    +------+       |  |
