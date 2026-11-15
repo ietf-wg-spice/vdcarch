@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-25T03:26:17.439740+00:00",
+  "timestamp": "2026-11-15T05:02:14.399079+00:00",
   "repo": "ietf-wg-spice/vdcarch",
   "labels": [
     {
@@ -697,6 +697,34 @@
       "mergedBy": "brentzundel",
       "mergeCommit": {
         "oid": "91fb89d6a9bfc4185ceee4ae1c285f13b1821c56"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 28,
+      "id": "PR_kwDOPxQiac8AAAABPPLuPQ",
+      "title": "fix flow diagram",
+      "url": "https://github.com/ietf-wg-spice/vdcarch/pull/28",
+      "state": "MERGED",
+      "author": "brentzundel",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-11-14T23:47:43Z",
+      "updatedAt": "2026-11-14T23:48:39Z",
+      "baseRepository": "ietf-wg-spice/vdcarch",
+      "baseRefName": "main",
+      "baseRefOid": "9c3b90c64fd6ea866b79241f2bd2d7949717b7d5",
+      "headRepository": "brentzundel/vdcarch",
+      "headRefName": "fix-flow",
+      "headRefOid": "fa8dadb6ae138cbee45aec33e73f91e6c316cda8",
+      "closedAt": "2026-11-14T23:48:39Z",
+      "mergedAt": "2026-11-14T23:48:39Z",
+      "mergedBy": "brentzundel",
+      "mergeCommit": {
+        "oid": "c90d271d4a6d172e6d97218c38c72e3572a31a43"
       },
       "comments": [],
       "reviews": []
